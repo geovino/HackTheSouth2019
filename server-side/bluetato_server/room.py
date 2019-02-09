@@ -101,7 +101,7 @@ class RoomsNamespace(Namespace):
 
         room_id = response["room_id"]
         next_asker = Database.get_next_asker(room_id)
-        emit("asker_chosen", {"asker": Database.set_current_asker(room_id)}, json=True, broadcast=True)
+        emit("asker_chosen", {"asker": next_asker}, json=True, broadcast=True)
         genereated_question = Database.get_question(room_id)
 
         if genereated_question is None:
