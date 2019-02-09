@@ -48,15 +48,15 @@
             users: [
               {
                 name: "Person1",
-                status: "Ready" 
+                displayStatus: "ready"
               },
               {
                 name: "Person2",
-                status: "Not Ready" 
+                displayStatus: "still thinking"
               },
               {
                 name: "Person3",
-                status: "Ready" 
+                displayStatus: "ready"
               },
             ]
           });
@@ -72,12 +72,12 @@
           // Get names
           let html = chooseReceiver({
             people: [
-              { 
+              {
                 name: "Niki the idiot"
               },
               {
                 name: "Ivo (The BOSS) Mladenov"
-              },  
+              },
               {
                 name: "Timmy"
               }

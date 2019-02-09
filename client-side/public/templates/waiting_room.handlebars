@@ -1,25 +1,21 @@
-<h1>Waiting room</h1>
+<div class="container-fluid">
+    <div class="row justify-content-lg-center">
+        <div class="col-lg-auto">
+            <h1 class="fancyheading">It'll only be a moment.</h1>
+            <h3 class="fancyheading">The others are thinking up questions.</h3>
 
+            <ul class="player-list">
+            {{#each users}}
+                <li class="player-display">{{this.name}} is <span class="highlight">{{this.displayStatus}}</span>.</li>
+            {{/each}}
+            </ul>
+        </div>
+    </div>
+    <div class="medium-info">
+        <span class="highlight">3/5</span> people have joined
+    </div>
+</div>
 
- {{!-- <div class="row"> --}}
-     {{!-- <div class="col-2"></div> --}}
-            {{!-- <div class="col-8"> --}}
-                <table>
-                    <tr>
-                        <th><label>User Name</label></th>
-                        <th><label>User Status</label></th>
-                    </tr>
-                    {{#each users}}
-                        <tr>
-                            <td><label>{{this.name}}</label></td>
-                            <td><label>{{this.status}}</label></td>
-                        </tr>
-                    {{/each}}
-                </table>
-               
-    {{!-- </div> --}}
-    {{!-- <div class="col-2"></div> --}}
-{{!-- </div> --}}
 
 
 {{!-- <div class="limiter">

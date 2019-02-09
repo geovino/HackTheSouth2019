@@ -98,28 +98,24 @@ templates["see_asker.handlebars"] = "<h1>See Asker</h1>\n" +
 templates["spectating.handlebars"] = "<h1>Spectating</h1>\n" +
    "";
 
-templates["waiting_room.handlebars"] = "<h1>Waiting room</h1>\n" +
+templates["waiting_room.handlebars"] = "<div class=\"container-fluid\">\n" +
+   "    <div class=\"row justify-content-lg-center\">\n" +
+   "        <div class=\"col-lg-auto\">\n" +
+   "            <h1 class=\"fancyheading\">It'll only be a moment.</h1>\n" +
+   "            <h3 class=\"fancyheading\">The others are thinking up questions.</h3>\n" +
    "\n" +
+   "            <ul class=\"player-list\">\n" +
+   "            {{#each users}}\n" +
+   "                <li class=\"player-display\">{{this.name}} is <span class=\"highlight\">{{this.displayStatus}}</span>.</li>\n" +
+   "            {{/each}}\n" +
+   "            </ul>\n" +
+   "        </div>\n" +
+   "    </div>\n" +
+   "    <div class=\"medium-info\">\n" +
+   "        <span class=\"highlight\">3/5</span> people have joined\n" +
+   "    </div>\n" +
+   "</div>\n" +
    "\n" +
-   " {{!-- <div class=\"row\"> --}}\n" +
-   "     {{!-- <div class=\"col-2\"></div> --}}\n" +
-   "            {{!-- <div class=\"col-8\"> --}}\n" +
-   "                <table>\n" +
-   "                    <tr>\n" +
-   "                        <th><label>User Name</label></th>\n" +
-   "                        <th><label>User Status</label></th>\n" +
-   "                    </tr>\n" +
-   "                    {{#each users}}\n" +
-   "                        <tr>\n" +
-   "                            <td><label>{{this.name}}</label></td>\n" +
-   "                            <td><label>{{this.status}}</label></td>\n" +
-   "                        </tr>\n" +
-   "                    {{/each}}\n" +
-   "                </table>\n" +
-   "               \n" +
-   "    {{!-- </div> --}}\n" +
-   "    {{!-- <div class=\"col-2\"></div> --}}\n" +
-   "{{!-- </div> --}}\n" +
    "\n" +
    "\n" +
    "{{!-- <div class=\"limiter\">\n" +
