@@ -1,18 +1,31 @@
 <div class="container">
     <form>
         <div class="row">
-            <div class="form-group">
-                <label for="realname">Name</label>
-                <input type="text" class="form-control" id="realname" placeholder="Write your name here">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+                <div class="form-group">
+                    <label for="realname">Name</label>
+                    <input type="text" class="form-control" id="realname" placeholder="Write your name here">
+                </div>
+            </div>
+            
+            <div class="col-2">
             </div>
         </div>
         <div class="row">
-            {{#each [1, 2, 3]}}
-                <div class="form-group">
-                    <label for="question{{this}}">Question {{this}}</label>
-                    <textarea class="form-control" id="question{{this}}" placeholder="Write your first question here"></textarea>
-                </div>
-            {{/each}}
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+                {{#each questions}}
+                    <div class="form-group">
+                        <label for="question{{this}}">Question {{this}}</label>
+                        <textarea class="form-control" id="question{{this}}" placeholder="Write your first question here"></textarea>
+                    </div>
+                {{/each}}
+            </div>
+            <div class="col-2">
+            </div>
         </div>
         <div class="row">
             <button type="button" class="btn btn-primary btn-sm">I'm ready</button>
