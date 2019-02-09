@@ -2,8 +2,9 @@ import uuid, random
 
 
 DATABASE = {
-    "rooms":{}
+    "rooms": {}
 }
+
 
 class Database:
 
@@ -30,19 +31,21 @@ class Database:
 
         DATABASE['rooms'][id] = room_value
 
-        return {id: room_value}
+        return id
 
+    @staticmethod
     def get_room(room_id):
         if room_id not in DATABASE['rooms']:
-            return {}
+            return None
 
         return DATABASE['rooms'][room_id]
 
+    @staticmethod
     def create_player(room_id, name):
         if room_id not in DATABASE['rooms']:
-            return {}, -1
+            return None, -1
         if name in DATABASE['rooms'][room_id]['players']:
-            return {}, -1
+            return None, -1
 
         id = Database.generate_uid()
         player_value = {
@@ -54,9 +57,9 @@ class Database:
 
         DATABASE['rooms'][room_id]['current_players'] += 1
 
-        return {id:DATABASE['rooms'][room_id]['players'][id]}, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
+        return id, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
 
-
+    @staticmethod
     def get_players(room_id):
         if room_id not in DATABASE['rooms']:
             return {}
@@ -78,50 +81,37 @@ class Database:
 
         return DATABASE['rooms'][room_id]['questions_required'] - DATABASE['rooms'][room_id]['players'][player_id]['questions_count']
 
+    @staticmethod
+    def questions_ready(room_id):
+        return len(DATABASE["rooms"][room_id]["questions"]) == DATABASE["rooms"][room_id]["total_players"] * DATABASE["rooms"][room_id]["questions_required"]
+
+    @staticmethod
+    def set_current_asker(room_id):
+        random_index = random.randint(1, DATABASE["rooms"][room_id]["total_players"]+1)
+        asker = DATABASE["rooms"][room_id]["players"].items()[random_index][1]["name"]
+        DATABASE["rooms"][room_id]["current_asker"] = asker
+        return asker
+
+    @staticmethod
+    def get_current_asker(room_id):
+        return DATABASE["rooms"][room_id]["current_asker"]
+
+    @staticmethod
+    def get_next_asker(room_id):
+        pass
+
+    @staticmethod
     def get_question(room_id):
         if room_id not in DATABASE['rooms']:
-            return -1
+            return None
 
         count = len(DATABASE['rooms'][room_id]['questions'])
-        rnd_id = random.randrange(0,count)
+        if count == 0:
+            return None
 
-        print (count)
-        print (rnd_id)
-        print (DATABASE['rooms'][room_id]['questions'])
+        rnd_id = random.randrange(0, count)
 
         question = DATABASE['rooms'][room_id]['questions'][rnd_id]
         DATABASE['rooms'][room_id]['questions'].pop(rnd_id)
 
         return question
-
-
-    def get():
-        return DATABASE
-
-
-# print(Database.create_room(4))
-# print(Database.create_player('1','a'))
-# print(Database.player_enters_question('1','1','a'))
-# print(Database.player_enters_question('1','1','b'))
-# print(Database.player_enters_question('1','1','c'))
-# print(Database.get_question('1'))
-# print(Database.get())
-
-
-# -----------------------------------------------------------------
-    # @staticmethod
-    # def get_fields(room_number, fields):
-        # client = pymongo.MongoClient(
-        #     config.MONGODB_CONFIG['URL'])
-
-        # db = client.pymongo_test
-        # fields_obj = {}
-
-        # for x in fields:
-        #     fields_obj[x] = 1
-
-        # result = db.rooms.find({'_id': room_number}, fields_obj)
-
-
-
-        # return result
