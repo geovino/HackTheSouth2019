@@ -2,8 +2,8 @@ from threading import Timer
 from json import loads
 from flask import Blueprint, request, jsonify
 from flask.views import MethodView
-from flask_socketio import Namespace, emit, broadcast
-from database import Database
+from flask_socketio import Namespace, emit
+from bluetato_server.database import Database
 
 
 rooms_blueprint = Blueprint('rooms', __name__, url_prefix='/rooms')
@@ -54,7 +54,7 @@ class RoomsNamespace(Namespace):
         user_uuid, players_left = Database.create_player(user["room_id"], user["username"])
 
         emit("user_created", {"user_key": user_uuid}, json=True)
-        broadcast.emit("players_count_changed", {"players_left": players_left}, json=True)
+        emit("players_count_changed", {"players_left": players_left}, json=True, broadcast=True)
 
     def on_create_question(self, data):
 
@@ -73,9 +73,9 @@ class RoomsNamespace(Namespace):
         emit("question_created", {"questions_left": questions_left}, json=True)
 
         if Database.questions_ready(room_id):
-            broadcast.emit("asker_chosen", {"asker": Database.set_current_asker(room_id)}, json=True)
+            emit("asker_chosen", {"asker": Database.set_current_asker(room_id)}, json=True, broadcast=True)
             genereated_question = Database.get_question(room_id)
-            broadcast.emit("generated_question", {"question": genereated_question}, json=True)
+            emit("generated_question", {"question": genereated_question}, json=True, broadcast=True)
 
     def on_choose_receiver(self, data):
 
@@ -87,7 +87,7 @@ class RoomsNamespace(Namespace):
 
         room_id = player["room_id"]
 
-        broadcast.emit("receiver_chosen", {"receiver": player["receiver"]}, json=True)
+        emit("receiver_chosen", {"receiver": player["receiver"]}, json=True, broadcast=True)
 
         Timer(30, self._timeout_callback, args=[Database.get_current_asker(room_id), player["receiver"], room_id]).start()
 
@@ -101,14 +101,14 @@ class RoomsNamespace(Namespace):
 
         room_id = response["room_id"]
         next_asker = Database.get_next_asker(room_id)
-        broadcast.emit("asker_chosen", {"asker": Database.set_current_asker(room_id)}, json=True)
+        emit("asker_chosen", {"asker": Database.set_current_asker(room_id)}, json=True, broadcast=True)
         genereated_question = Database.get_question(room_id)
 
         if genereated_question is None:
-            broadcast.emit("game_over", "")
+            emit("game_over", "", broadcast=True)
         else:
-            broadcast.emit("generated_question", {"question": genereated_question}, json=True)
+            emit("generated_question", {"question": genereated_question}, json=True, broadcast=True)
 
     def _timeout_callback(self, asker, receiver, room_id):
         if asker == Database.get_current_asker(room_id):
-            broadcast.emit("time_limit_exceeded", {"asker": asker, "receiver": receiver}, json=True)
+            emit("time_limit_exceeded", {"asker": asker, "receiver": receiver}, json=True, broadcast=True)

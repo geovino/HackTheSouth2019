@@ -1,4 +1,5 @@
-import uuid, random
+import uuid
+import random
 
 
 DATABASE = {
@@ -16,22 +17,22 @@ class Database:
     @staticmethod
     def create_room(number_of_players):
 
-        id = ''
-        while id == '' or id in DATABASE['rooms']:
-            id = str(Database.generate_uid())
+        id_ = ''
+        while id_ == '' or id_ in DATABASE['rooms']:
+            id_ = str(Database.generate_uid())
 
         room_value = {
-            "players":{},
-            "questions":[],
-            "total_players":number_of_players,
-            "current_players":0,
-            "questions_required":3,
-            "current_asker":-1,
+            "players": {},
+            "questions": [],
+            "total_players": number_of_players,
+            "current_players": 0,
+            "questions_required": 3,
+            "current_asker": -1,
         }
 
-        DATABASE['rooms'][id] = room_value
+        DATABASE['rooms'][id_] = room_value
 
-        return id
+        return id_
 
     @staticmethod
     def get_room(room_id):
@@ -47,17 +48,17 @@ class Database:
         if name in DATABASE['rooms'][room_id]['players']:
             return None, -1
 
-        id = Database.generate_uid()
+        id_ = Database.generate_uid()
         player_value = {
             "name": name,
             "questions_count": 0
         }
 
-        DATABASE['rooms'][room_id]['players'][id] = player_value
+        DATABASE['rooms'][room_id]['players'][id_] = player_value
 
         DATABASE['rooms'][room_id]['current_players'] += 1
 
-        return id, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
+        return id_, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
 
     @staticmethod
     def get_players(room_id):
@@ -66,6 +67,7 @@ class Database:
 
         return DATABASE['rooms'][room_id]['players']
 
+    @staticmethod
     def player_enters_question(room_id, player_id, question):
         player_id = str(player_id)
         if room_id not in DATABASE['rooms']:

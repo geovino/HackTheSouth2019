@@ -1,4 +1,4 @@
-from app import app_instance
+from bluetato_server.app import app_instance
 
 
 def main():

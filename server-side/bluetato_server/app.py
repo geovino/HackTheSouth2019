@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_socketio import SocketIO
-from room import RoomsNamespace, rooms_blueprint
+from bluetato_server.room import RoomsNamespace, rooms_blueprint
 
 
 app_instance = Flask(__name__)
