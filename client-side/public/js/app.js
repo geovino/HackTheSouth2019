@@ -103,6 +103,18 @@
           router.navigateTo(path);
         });
         // console.log('nice');
+
+        function onJoinRoom() {
+          router.navigateTo('/enter_questions');
+        }
+
+        function onQuestionEntered() {
+
+        }
+
+        function onReady() {
+          router.navigateTo('/waiting_room');
+        }
     });
 
 })(jQuery);

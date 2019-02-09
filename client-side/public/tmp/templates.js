@@ -7,6 +7,19 @@ templates["choose_receiver.handlebars"] = "<h1>Choose Receiver</h1>\n" +
    "";
 
 templates["enter_questions.handlebars"] = "<div class=\"container\">\n" +
+   " <div class=\"row\">\n" +
+   "   <div class=\"col-sm\">\n" +
+   "     One of three columns\n" +
+   "   </div>\n" +
+   "   <div class=\"col-sm\">\n" +
+   "     One of three columns\n" +
+   "   </div>\n" +
+   "   <div class=\"col-sm\">\n" +
+   "     One of three columns\n" +
+   "   </div>\n" +
+   " </div>\n" +
+   "</div>\n" +
+   "<div class=\"container-fluid\">\n" +
    "    <form>\n" +
    "        <div class=\"row\">\n" +
    "            <div class=\"col-2\">\n" +
@@ -17,6 +30,7 @@ templates["enter_questions.handlebars"] = "<div class=\"container\">\n" +
    "                    <input type=\"text\" class=\"form-control\" id=\"realname\" placeholder=\"Write your name here\">\n" +
    "                </div>\n" +
    "            </div>\n" +
+   "\n" +
    "            \n" +
    "            <div class=\"col-2\">\n" +
    "            </div>\n" +
