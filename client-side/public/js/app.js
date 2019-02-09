@@ -4,15 +4,23 @@
     window.addEventListener('load', () => {
         const el = $('#app');
 
+        // console.log(templates['asking_question.handlebars'] === undefined);
+        // console.log(templates['choose_receiver.handlebars'] === undefined);
+        // console.log(templates['enter_questions.handlebars'] === undefined);
+        // console.log(templates['receiving_question.handlebars'] === undefined);
+        // console.log(templates['see_asker.handlebars'] === undefined);
+        // console.log(templates['spectating.handlebars'] === undefined);
+        // console.log(templates['waiting_room.handlebars'] === undefined);
+
+
         // Compile Handlebar Templates
-        const askingQuestions = Handlebars.compile(templates['asking_questions.handlebars']);
+        const askingQuestions = Handlebars.compile(templates['asking_question.handlebars']);
         const chooseReceiver = Handlebars.compile(templates['choose_receiver.handlebars']);
         const enterQuestions = Handlebars.compile(templates['enter_questions.handlebars']);
         const receivingQuestion = Handlebars.compile(templates['receiving_question.handlebars']);
         const seeAsker = Handlebars.compile(templates['see_asker.handlebars']);
         const spectating = Handlebars.compile(templates['spectating.handlebars']);
         const waitingRoom = Handlebars.compile(templates['waiting_room.handlebars']);
-
 
         const html = waitingRoom();
         el.html(html);
