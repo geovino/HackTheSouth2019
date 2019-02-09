@@ -10,5 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "vanilla-router": "^1.2.7"
-  }
+  },
+  "devDependencies": {}
 }
