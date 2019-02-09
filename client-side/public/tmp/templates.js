@@ -100,119 +100,18 @@ templates["spectating.handlebars"] = "<h1>Spectating</h1>\n" +
 
 templates["waiting_room.handlebars"] = "<h1>Waiting room</h1>\n" +
    "\n" +
-   "\n" +
-   " {{!-- <div class=\"row\"> --}}\n" +
-   "     {{!-- <div class=\"col-2\"></div> --}}\n" +
-   "            {{!-- <div class=\"col-8\"> --}}\n" +
-   "                <table>\n" +
-   "                    <tr>\n" +
-   "                        <th><label>User Name</label></th>\n" +
-   "                        <th><label>User Status</label></th>\n" +
-   "                    </tr>\n" +
-   "                    {{#each users}}\n" +
-   "                        <tr>\n" +
-   "                            <td><label>{{this.name}}</label></td>\n" +
-   "                            <td><label>{{this.status}}</label></td>\n" +
-   "                        </tr>\n" +
-   "                    {{/each}}\n" +
-   "                </table>\n" +
-   "               \n" +
-   "    {{!-- </div> --}}\n" +
-   "    {{!-- <div class=\"col-2\"></div> --}}\n" +
-   "{{!-- </div> --}}\n" +
+   "<table>\n" +
+   "    <tr>\n" +
+   "        <th><label>User Name</label></th>\n" +
+   "        <th><label>User Status</label></th>\n" +
+   "    </tr>\n" +
+   "    {{#each users}}\n" +
+   "        <tr>\n" +
+   "            <td><label>{{this.name}}</label></td>\n" +
+   "            <td><label>{{this.status}}</label></td>\n" +
+   "        </tr>\n" +
+   "    {{/each}}\n" +
+   "</table>\n" +
    "\n" +
    "\n" +
-   "{{!-- <div class=\"limiter\">\n" +
-   "    <div>\n" +
-   "        <div class=\"container-table100\">\n" +
-   "            <div class=\"wrap-table100\">\n" +
-   "                    <div class=\"table\">\n" +
-   "\n" +
-   "                        <div class=\"row header\">\n" +
-   "                            <div class=\"cell\">\n" +
-   "                                Full Name\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\">\n" +
-   "                                Questions\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Vincent Williamson\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Joseph Smith\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Not Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Justin Black\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Sean Guzman\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Keith Carter\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Austin Medina\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Vincent Williamson\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Joseph Smith\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Location\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                    </div>\n" +
-   "            </div>\n" +
-   "        </div>\n" +
-   "    </div>\n" +
-   "</div>\n" +
-   " --}}\n" +
-   "";
+   " ";
