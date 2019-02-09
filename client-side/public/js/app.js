@@ -54,8 +54,34 @@
         });
 
         router.add('/choose_receiver', () => {
-          let html = chooseReceiver();
+          // Get names
+          let html = chooseReceiver({
+            people: [
+              { 
+                name: "Niki the idiot"
+              },
+              {
+                name: "Ivo (The BOSS) Mladenov"
+              },  
+              {
+                name: "Timmy"
+              }
+            ]
+          });
           el.html(html);
+          $('.userButton').each(function() {
+            $(this).on('click', function(event) {
+              let $elem = $(this);
+              let receiver = null;
+              if ($elem.length == 1 && $elem[0].textContent) {
+                receiver = $elem[0].textContent;
+              }
+
+              console.log(receiver);
+
+              return receiver; // name of the receiver
+            });
+          });
         });
 
         router.add('/enter_questions', () => {
