@@ -6,6 +6,7 @@
                 "player_id": {
                     "name": "nickname",
                     "questions_count": 0,
+                    "session_id": "unique session identifier"
                     // "score": 10,
                 }
             },
