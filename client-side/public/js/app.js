@@ -64,7 +64,9 @@
         });
 
         router.add('/asking_question', () => {
-          let html = askingQuestion();
+          let html = askingQuestion({
+            asker:"Ivo"
+          });
           el.html(html);
         });
 
