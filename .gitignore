@@ -1,3 +1,4 @@
 client-side/node_modules
 client-side/package-lock.json
+client-side/.env
 .idea
