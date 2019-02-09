@@ -1,6 +1,8 @@
+from threading import Timer
 from flask import Blueprint, request, jsonify
 from flask.views import MethodView
-from database import create_room, get_room, create_user, create_question
+from database import create_room, get_room, create_player, create_question, get_current_player
+
 
 rooms_blueprint = Blueprint('rooms', __name__, url_prefix='/rooms')
 
@@ -32,17 +34,19 @@ class RoomsInstanceAPI(MethodView):
 
     def post(self, identifier):
 
-        user = request.json
+        player = request.json
 
-        if user is None:  # request body couldn't be parsed as JSON
-            return jsonify({'msg': "Invalid data was sent for user registration."})
+        if player is None:  # request body couldn't be parsed as JSON
+            return jsonify({'msg': "Invalid data was sent for player registration."})
 
-        user_instance = register_user(identifier, user)
+        player_instance, players_left = create_player(identifier, player)
 
-        if user_instance == {}:
-            return jsonify({'title': 'Bad request', 'msg': 'Invalid user data.'}), 400
+        if player_instance == {}:
+            return jsonify({'title': 'Bad request', 'msg': 'Invalid player data.'}), 400
 
-        return jsonify(user_instance.to_json()), 201
+        response = player_instance.to_json()
+        response["players_left"] = players_left
+        return jsonify(response), 201
 
 
 rooms_blueprint.add_url_rule('/<string:identifier>', view_func=RoomsInstanceAPI.as_view('api_rooms_instance'))
@@ -65,7 +69,7 @@ class RoomsActiveInstanceAPI(MethodView):
 
     def _handle_question(self, identifier, question):
 
-        # TODO check if user is allowed to post more questions
+        # TODO check if player is allowed to post more questions
         questions_left = create_question(identifier, question)
 
         return jsonify({"questions_left": questions_left})
@@ -74,13 +78,22 @@ class RoomsActiveInstanceAPI(MethodView):
 
         # TODO start timer
 
-        pass
+        current_asker = get_current_asker()
+
+        Timer(30, self._timeout_callback, args=[current_asker]).start()
 
     def _handle_response(self, identifier):
 
-        # TODO round ends choose another user
+        # TODO round ends choose another player
 
         pass
+
+    def _timeout_callback(self, asker):
+
+        if get_current_asker() != asker:
+            return
+
+        # TODO notify all players for timeout
 
 
 rooms_blueprint.add_url_rule('/<string:identifier>/<string:info>', view_func=RoomsInstanceAPI.as_view('api_rooms_active_instance'))
