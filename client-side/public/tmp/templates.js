@@ -25,27 +25,14 @@ templates["choose_receiver.handlebars"] = "<h1>Choose Receiver</h1>\n" +
    "    {{/each}}\n" +
    "</div>";
 
-templates["enter_questions.handlebars"] = "<div class=\"container\">\n" +
-   " <div class=\"row\">\n" +
-   "   <div class=\"col-sm\">\n" +
-   "     One of three columns\n" +
-   "   </div>\n" +
-   "   <div class=\"col-sm\">\n" +
-   "     One of three columns\n" +
-   "   </div>\n" +
-   "   <div class=\"col-sm\">\n" +
-   "     One of three columns\n" +
-   "   </div>\n" +
-   " </div>\n" +
-   "</div>\n" +
-   "<div class=\"container-fluid\">\n" +
+templates["enter_questions.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    <form>\n" +
    "        <div class=\"row\">\n" +
    "            <div class=\"col-2\">\n" +
    "            </div>\n" +
    "            <div class=\"col-8\">\n" +
    "                <div class=\"form-group\">\n" +
-   "                    <label for=\"realname\">Name</label>\n" +
+   "                    <label for=\"realname\" class=\"whiteLabels\">Name</label>\n" +
    "                    <input type=\"text\" class=\"form-control realname\" id=\"realname\" placeholder=\"Write your name here\">\n" +
    "                </div>\n" +
    "            </div>\n" +
@@ -59,7 +46,7 @@ templates["enter_questions.handlebars"] = "<div class=\"container\">\n" +
    "            <div class=\"col-8\">\n" +
    "                {{#each questions}}\n" +
    "                    <div class=\"form-group\">\n" +
-   "                        <label for=\"userQuestion\">Question {{this}}</label>\n" +
+   "                        <label for=\"userQuestion\" class=\"whiteLabels\">Question {{this}}</label>\n" +
    "                        <textarea class=\"form-control userQuestion\" placeholder=\"Write your first question here\"></textarea>\n" +
    "                    </div>\n" +
    "                {{/each}}\n" +
@@ -67,7 +54,7 @@ templates["enter_questions.handlebars"] = "<div class=\"container\">\n" +
    "            <div class=\"col-2\">\n" +
    "            </div>\n" +
    "        </div>\n" +
-   "        <div class=\"row\">\n" +
+   "        <div class=\"text-center\">\n" +
    "            <button type=\"button\" class=\"btn btn-primary btn-sm readyButton\">I'm ready</button>\n" +
    "        </div>\n" +
    "    </form>\n" +
@@ -115,7 +102,6 @@ templates["see_asker.handlebars"] = "<h1>Asker is: {{asker}}</h1>\n" +
 templates["spectating.handlebars"] = "<h1>Spectating</h1>\n" +
    "";
 
-<<<<<<< HEAD
 templates["waiting_room.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    <div class=\"row justify-content-lg-center\">\n" +
    "        <div class=\"col-lg-auto\">\n" +
@@ -134,110 +120,4 @@ templates["waiting_room.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    </div>\n" +
    "</div>\n" +
    "\n" +
-   "\n" +
-   "\n" +
-   "{{!-- <div class=\"limiter\">\n" +
-   "    <div>\n" +
-   "        <div class=\"container-table100\">\n" +
-   "            <div class=\"wrap-table100\">\n" +
-   "                    <div class=\"table\">\n" +
-   "\n" +
-   "                        <div class=\"row header\">\n" +
-   "                            <div class=\"cell\">\n" +
-   "                                Full Name\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\">\n" +
-   "                                Questions\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Vincent Williamson\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Joseph Smith\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Not Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Justin Black\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Sean Guzman\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Keith Carter\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Austin Medina\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Vincent Williamson\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Joseph Smith\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Location\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-=======
-templates["waiting_room.handlebars"] = "<h1>Waiting room</h1>\n" +
-   "\n" +
-   "<table class=\"list-group\">\n" +
-   "    <tr class=\"list-group-item list-group-item-primary\">\n" +
-   "        <th colspan=\"2\"><label>User Name</label></th>\n" +
-   "        <th colspan=\"2\"><label>User Status</label></th>\n" +
-   "    </tr>\n" +
-   "    {{#each users}}\n" +
-   "        <tr class=\"list-group-item list-group-item-light\">\n" +
-   "            <td colspan=\"2\"><label>{{this.name}}</label></td>\n" +
-   "            <td colspan=\"2\"><label>{{this.status}}</label></td>\n" +
-   "        </tr>\n" +
-   "    {{/each}}\n" +
-   "</table>\n" +
-   "\n" +
->>>>>>> cede7ea16e9dc8ce51cdc2c9671a7d9e11db1556
-   "\n" +
-   " ";
+   "";

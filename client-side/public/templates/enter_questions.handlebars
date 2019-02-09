@@ -1,16 +1,3 @@
-<div class="container">
- <div class="row">
-   <div class="col-sm">
-     One of three columns
-   </div>
-   <div class="col-sm">
-     One of three columns
-   </div>
-   <div class="col-sm">
-     One of three columns
-   </div>
- </div>
-</div>
 <div class="container-fluid">
     <form>
         <div class="row">
@@ -18,7 +5,7 @@
             </div>
             <div class="col-8">
                 <div class="form-group">
-                    <label for="realname">Name</label>
+                    <label for="realname" class="whiteLabels">Name</label>
                     <input type="text" class="form-control realname" id="realname" placeholder="Write your name here">
                 </div>
             </div>
@@ -32,7 +19,7 @@
             <div class="col-8">
                 {{#each questions}}
                     <div class="form-group">
-                        <label for="userQuestion">Question {{this}}</label>
+                        <label for="userQuestion" class="whiteLabels">Question {{this}}</label>
                         <textarea class="form-control userQuestion" placeholder="Write your first question here"></textarea>
                     </div>
                 {{/each}}
@@ -40,7 +27,7 @@
             <div class="col-2">
             </div>
         </div>
-        <div class="row">
+        <div class="text-center">
             <button type="button" class="btn btn-primary btn-sm readyButton">I'm ready</button>
         </div>
     </form>
