@@ -132,6 +132,7 @@
             state.player = input.name;
             console.log(state);
             // At that time a receiver is known, so redirect
+            router.navigateTo('/waiting_room');
             return input; // name of the receiver
           });
         });
