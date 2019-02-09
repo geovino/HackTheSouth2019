@@ -56,11 +56,12 @@ class Database:
     # ------------------ PLAYER ----------------------
     @staticmethod
     def create_player(room_id, name, session_id):
+    # def create_player(room_id, name, session_id, player_id):
         if room_id not in DATABASE['rooms']:
             return None, -1
 
         for pl in DATABASE['rooms'][room_id]['players']:
-            if pl['name'] == name:
+            if DATABASE['rooms'][room_id]['players'][pl] == name:
                 return None, -1
 
         id_ = Database.generate_uid()
@@ -71,10 +72,12 @@ class Database:
         }
 
         DATABASE['rooms'][room_id]['players'][id_] = player_value
+        # DATABASE['rooms'][room_id]['players'][player_id] = player_value
 
         DATABASE['rooms'][room_id]['current_players'] += 1
 
         return id_, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
+        # return player_id, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
 
     @staticmethod
     def get_players(room_id):
@@ -148,6 +151,43 @@ class Database:
 
     # ------------------ QUESTIONS ----------------------
     @staticmethod
+    def set_last_receiver(room_id, name):
+        if room_id not in DATABASE['rooms']:
+            return None
+
+        for pl in DATABASE['rooms'][room_id]['players']:
+            if DATABASE['rooms'][room_id]['players'][pl] == name:
+                DATABASE['rooms'][room_id]['last_receiver'] = pl
+                return 0
+
+        return None
+
+    @staticmethod
+    def get_potential_receivers(room_id):
+        if room_id not in DATABASE['rooms']:
+            return None
+
+        players = DATABASE["rooms"][room_id]["players"].keys()
+
+        last_receiver = DATABASE["rooms"][room_id]["last_receiver"]
+        asker = Database.get_current_asker(room_id)
+
+        if last_receiver in players:
+            players.remove(last_receiver)
+        else:
+            return None, "SHIT - serious logic error"
+
+        if asker in players:
+            players.remove(asker)
+        else:
+            return None, "SHIT - serious logic error"
+
+        return 0
+
+    # ------------------ QUESTIONS END ----------------------
+
+    # ------------------ QUESTIONS ----------------------
+    @staticmethod
     def questions_ready(room_id):
         return len(DATABASE["rooms"][room_id]["questions"]) == DATABASE["rooms"][room_id]["total_players"] * DATABASE["rooms"][room_id]["questions_required"]
 
@@ -170,19 +210,29 @@ class Database:
     # ------------------ QUESTIONS END ----------------------
 
 
+    # ------------------ TESTING ----------------------
     def get():
         return DATABASE
 
 
-print(Database.create_room(4))
-print(Database.create_player('1','a','a1'))
-print(Database.player_enters_question('1','1','a'))
-print(Database.player_enters_question('1','1','b'))
-print(Database.player_enters_question('1','1','c'))
-print(Database.get_session_id('1','1'))
-print(Database.get_question('1'))
-print(Database.get())
+# print(Database.create_room(4))
+# print("+-> ",Database.create_player('1','a','a1','1'))
+# # print(Database.player_enters_question('1','1','a'))
+# # print(Database.player_enters_question('1','1','b'))
+# # print(Database.player_enters_question('1','1','c'))
+# # print(Database.get_session_id('1','1'))
 
+
+# print("+-> ",Database.create_player('1','a','a1','2'))
+# # print(Database.player_enters_question('1','1','a'))
+# # print(Database.player_enters_question('1','1','b'))
+# # print(Database.player_enters_question('1','1','c'))
+# # print(Database.get_session_id('1','1'))
+
+# # print(Database.get_question('1'))
+# print(Database.get())
+
+    # ------------------ TESTING END ----------------------
 
     # @staticmethod
     # def get_fields(room_number, fields):
