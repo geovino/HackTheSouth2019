@@ -9,6 +9,7 @@ app.use(express.static('public'));
 
 // Allow front-end access to node_modules folder
 app.use('/scripts', express.static(`${__dirname}/node_modules/`));
+app.use('/vendor', express.static(`${__dirname}/public/vendor/`));
 
 app.use((req, res) => res.sendFile(`${__dirname}/public/index.html`));
 

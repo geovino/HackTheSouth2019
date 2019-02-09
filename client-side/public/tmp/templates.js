@@ -7,17 +7,51 @@ templates["choose_receiver.handlebars"] = "<h1>Choose Receiver</h1>\n" +
    "";
 
 templates["enter_questions.handlebars"] = "<div class=\"container\">\n" +
-   "  <div class=\"row\">\n" +
-   "    <div class=\"col-4\">\n" +
-   "      One of three columns\n" +
-   "    </div>\n" +
-   "    <div class=\"col-4\">\n" +
-   "      One of three columns\n" +
-   "    </div>\n" +
-   "    <div class=\"col-4\">\n" +
-   "      One of three columns\n" +
-   "    </div>\n" +
-   "  </div>\n" +
+   " <div class=\"row\">\n" +
+   "   <div class=\"col-sm\">\n" +
+   "     One of three columns\n" +
+   "   </div>\n" +
+   "   <div class=\"col-sm\">\n" +
+   "     One of three columns\n" +
+   "   </div>\n" +
+   "   <div class=\"col-sm\">\n" +
+   "     One of three columns\n" +
+   "   </div>\n" +
+   " </div>\n" +
+   "</div>\n" +
+   "<div class=\"container-fluid\">\n" +
+   "    <form>\n" +
+   "        <div class=\"row\">\n" +
+   "            <div class=\"col-2\">\n" +
+   "            </div>\n" +
+   "            <div class=\"col-8\">\n" +
+   "                <div class=\"form-group\">\n" +
+   "                    <label for=\"realname\">Name</label>\n" +
+   "                    <input type=\"text\" class=\"form-control\" id=\"realname\" placeholder=\"Write your name here\">\n" +
+   "                </div>\n" +
+   "            </div>\n" +
+   "\n" +
+   "            <div class=\"col-2\">\n" +
+   "            </div>\n" +
+   "        </div>\n" +
+   "        <div class=\"row\">\n" +
+   "            <div class=\"col-2\">\n" +
+   "            </div>\n" +
+   "            <div class=\"col-8\">\n" +
+   "                {{#each questions}}\n" +
+   "                    <div class=\"form-group\">\n" +
+   "                        <label for=\"question{{this}}\">Question {{this}}</label>\n" +
+   "                        <textarea class=\"form-control\" id=\"question{{this}}\" placeholder=\"Write your first question here\"></textarea>\n" +
+   "                    </div>\n" +
+   "                {{/each}}\n" +
+   "            </div>\n" +
+   "            <div class=\"col-2\">\n" +
+   "            </div>\n" +
+   "        </div>\n" +
+   "        <div class=\"row\">\n" +
+   "            <button type=\"button\" class=\"btn btn-primary btn-sm\">I'm ready</button>\n" +
+   "        </div>\n" +
+   "    </form>\n" +
    "</div>\n" +
    "";
 

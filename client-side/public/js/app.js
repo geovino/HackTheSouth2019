@@ -115,8 +115,6 @@
         function onReady() {
           router.navigateTo('/waiting_room');
         }
-
-        function
     });
 
 })(jQuery);
