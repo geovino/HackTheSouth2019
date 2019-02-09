@@ -18,11 +18,15 @@ templates["asking_question.handlebars"] = "\n" +
    "\n" +
    "";
 
-templates["choose_receiver.handlebars"] = "<h1>Choose Receiver</h1>\n" +
-   "<div class=\"list-group\">\n" +
-   "    {{#each people}}\n" +
-   "        <button type=\"button\" class=\"list-group-item list-group-item-action userButton\">{{this.name}}</button>\n" +
-   "    {{/each}}\n" +
+templates["choose_receiver.handlebars"] = "<div class=\"list-group\">\n" +
+   "    <div class='container'>\n" +
+   "        <h1 class='whiteLabels'>Choose Receiver</h1>\n" +
+   "        <div class=\"col-2\"></div>\n" +
+   "        {{#each people}}\n" +
+   "            <button type=\"button\" class=\"list-group-item list-group-item-action userButton\">{{this.name}}</button>\n" +
+   "        {{/each}}\n" +
+   "        <div class=\"col-2\"></div>\n" +
+   "    </div>\n" +
    "</div>";
 
 templates["enter_questions.handlebars"] = "<div class=\"container-fluid\">\n" +
