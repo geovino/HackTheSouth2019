@@ -101,14 +101,18 @@ templates["waiting_room.handlebars"] = "<h1>Waiting room</h1>\n" +
    " {{!-- <div class=\"row\"> --}}\n" +
    "     {{!-- <div class=\"col-2\"></div> --}}\n" +
    "            {{!-- <div class=\"col-8\"> --}}\n" +
-   "                <ul>\n" +
+   "                <table>\n" +
+   "                    <tr>\n" +
+   "                        <th><label>User Name</label></th>\n" +
+   "                        <th><label>User Status</label></th>\n" +
+   "                    </tr>\n" +
    "                    {{#each users}}\n" +
-   "                        <li>\n" +
-   "                            <label>User {{this.name}}</label>\n" +
-   "                            <label >status {{this.status}}</label>\n" +
-   "                        </li>\n" +
+   "                        <tr>\n" +
+   "                            <td><label>{{this.name}}</label></td>\n" +
+   "                            <td><label>{{this.status}}</label></td>\n" +
+   "                        </tr>\n" +
    "                    {{/each}}\n" +
-   "                </ul>\n" +
+   "                </table>\n" +
    "               \n" +
    "    {{!-- </div> --}}\n" +
    "    {{!-- <div class=\"col-2\"></div> --}}\n" +

@@ -4,14 +4,18 @@
  {{!-- <div class="row"> --}}
      {{!-- <div class="col-2"></div> --}}
             {{!-- <div class="col-8"> --}}
-                <ul>
+                <table>
+                    <tr>
+                        <th><label>User Name</label></th>
+                        <th><label>User Status</label></th>
+                    </tr>
                     {{#each users}}
-                        <li>
-                            <label>User {{this.name}}</label>
-                            <label >status {{this.status}}</label>
-                        </li>
+                        <tr>
+                            <td><label>{{this.name}}</label></td>
+                            <td><label>{{this.status}}</label></td>
+                        </tr>
                     {{/each}}
-                </ul>
+                </table>
                
     {{!-- </div> --}}
     {{!-- <div class="col-2"></div> --}}
