@@ -1,6 +1,10 @@
 (function($) {
     'use strict';
 
+    const state = {
+      player: null
+    };
+
     window.addEventListener('load', () => {
         const el = $('#app');
 
@@ -92,10 +96,10 @@
               let receiver = null;
               if ($elem.length == 1 && $elem[0].textContent) {
                 receiver = $elem[0].textContent;
-              }
+              } 
 
               console.log(receiver);
-
+              // At that time a receiver is known, so redirect
               return receiver; // name of the receiver
             });
           });
@@ -106,6 +110,27 @@
             questions: [1, 2, 3]
           });
           el.html(html);
+
+          let input = {
+            name: null,
+            questions: []
+          };
+
+          $('.readyButton').on('click', function() {
+            let $realnameElem = $('.realname');
+            let $questionsElem = $('.userQuestion');
+            if ($realnameElem.length == 1 && $realnameElem[0].value) {
+              input.name = $realnameElem[0].value;
+            } 
+
+            $questionsElem.each(function(index) { 
+              input.questions[index] = $(this)[0].value;
+            });
+
+            console.log(input);
+            // At that time a receiver is known, so redirect
+            return input; // name of the receiver
+          });
         });
 
         router.add('/receiving_question', () => {

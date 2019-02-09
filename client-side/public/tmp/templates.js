@@ -46,7 +46,7 @@ templates["enter_questions.handlebars"] = "<div class=\"container\">\n" +
    "            <div class=\"col-8\">\n" +
    "                <div class=\"form-group\">\n" +
    "                    <label for=\"realname\">Name</label>\n" +
-   "                    <input type=\"text\" class=\"form-control\" id=\"realname\" placeholder=\"Write your name here\">\n" +
+   "                    <input type=\"text\" class=\"form-control realname\" id=\"realname\" placeholder=\"Write your name here\">\n" +
    "                </div>\n" +
    "            </div>\n" +
    "\n" +
@@ -59,8 +59,8 @@ templates["enter_questions.handlebars"] = "<div class=\"container\">\n" +
    "            <div class=\"col-8\">\n" +
    "                {{#each questions}}\n" +
    "                    <div class=\"form-group\">\n" +
-   "                        <label for=\"question{{this}}\">Question {{this}}</label>\n" +
-   "                        <textarea class=\"form-control\" id=\"question{{this}}\" placeholder=\"Write your first question here\"></textarea>\n" +
+   "                        <label for=\"userQuestion\">Question {{this}}</label>\n" +
+   "                        <textarea class=\"form-control userQuestion\" placeholder=\"Write your first question here\"></textarea>\n" +
    "                    </div>\n" +
    "                {{/each}}\n" +
    "            </div>\n" +
@@ -68,7 +68,7 @@ templates["enter_questions.handlebars"] = "<div class=\"container\">\n" +
    "            </div>\n" +
    "        </div>\n" +
    "        <div class=\"row\">\n" +
-   "            <button type=\"button\" class=\"btn btn-primary btn-sm\">I'm ready</button>\n" +
+   "            <button type=\"button\" class=\"btn btn-primary btn-sm readyButton\">I'm ready</button>\n" +
    "        </div>\n" +
    "    </form>\n" +
    "</div>\n" +
