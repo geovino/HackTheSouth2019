@@ -44,7 +44,22 @@
         });
 
         router.add('/waiting_room', () => {
-          let html = askingQuestion();
+          let html = waitingRoom({
+            users: [
+              {
+                name: "Person1",
+                status: "Ready" 
+              },
+              {
+                name: "Person2",
+                status: "Not Ready" 
+              },
+              {
+                name: "Person3",
+                status: "Ready" 
+              },
+            ]
+          });
           el.html(html);
         });
 
@@ -129,6 +144,18 @@
           router.navigateTo(path);
         });
         // console.log('nice');
+
+        function onJoinRoom() {
+          router.navigateTo('/enter_questions');
+        }
+
+        function onQuestionEntered() {
+
+        }
+
+        function onReady() {
+          router.navigateTo('/waiting_room');
+        }
     });
 
 })(jQuery);
