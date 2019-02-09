@@ -12,6 +12,8 @@
     
         const html = ratesTemplate();
         el.html(html);
-    }   
-    
+        
+        // console.log('nice');        
+    });
+
 })(jQuery);
