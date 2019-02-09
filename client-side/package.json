@@ -12,6 +12,8 @@
     "axios": "^0.18.0",
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "grunt": "^1.0.3",
+    "grunt-html-convert": "0.0.2",
     "handlebars": "^4.1.0",
     "jquery": "^3.3.1",
     "semantic-ui-css": "^2.4.1",
