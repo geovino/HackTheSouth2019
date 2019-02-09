@@ -6,6 +6,7 @@
                 "player_id": {
                     "name": "nickname",
                     "questions_count": 0,
+                    "session_id":"id",
                     // "score": 10,
                 }
             },
@@ -15,8 +16,9 @@
             ],
             "total_players":1,
             "current_players":1,
-            "current_asker":"id",
-            "questions_required":1
+            "asker_queue":[],
+            "questions_required":1,
+            "last_receiver":"id"
         }, 
         "room_two_id": {
 
