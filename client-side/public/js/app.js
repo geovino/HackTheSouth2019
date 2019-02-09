@@ -48,7 +48,7 @@
           el.html(html);
         });
 
-        router.add('/asking_questions', () => {
+        router.add('/asking_question', () => {
           let html = askingQuestion();
           el.html(html);
         });
