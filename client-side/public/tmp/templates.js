@@ -1,20 +1,13 @@
 var templates = {};
 
-templates["asking_question.handlebars"] = "<h1>{{asker}} is asking a question</h1>\n" +
-   "\n" +
-   "<div>\n" +
-   "    <div class=\"col-2\"></div>\n" +
-   "        <div class=\"col-8\">\n" +
-   "            <i class= \"fa fa-question-circle fa-10x\" style=\"font-size: 20em;\"></i>\n" +
-   "        </div>\n" +
-   "    <div class=\"col-2\"></div>\n" +
-   "</div>\n" +
-   "\n" +
-   "\n" +
-   "";
+templates["asking_question.handlebars"] = "<h1>Asking Question</h1>";
 
 templates["choose_receiver.handlebars"] = "<h1>Choose Receiver</h1>\n" +
-   "";
+   "<div class=\"list-group\">\n" +
+   "    {{#each people}}\n" +
+   "        <button type=\"button\" class=\"list-group-item list-group-item-action userButton\">{{this.name}}</button>\n" +
+   "    {{/each}}\n" +
+   "</div>";
 
 templates["enter_questions.handlebars"] = "<div class=\"container\">\n" +
    " <div class=\"row\">\n" +

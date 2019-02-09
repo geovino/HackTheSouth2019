@@ -1,1 +1,6 @@
 <h1>Choose Receiver</h1>
+<div class="list-group">
+    {{#each people}}
+        <button type="button" class="list-group-item list-group-item-action userButton">{{this.name}}</button>
+    {{/each}}
+</div>
