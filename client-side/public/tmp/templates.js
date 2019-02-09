@@ -108,7 +108,8 @@ templates["lobby.handlebars"] = "<header>\n" +
 templates["receiving_question.handlebars"] = "<h1>Receiving Question</h1>\n" +
    "";
 
-templates["see_asker.handlebars"] = "<h1>See Asker</h1>\n" +
+templates["see_asker.handlebars"] = "<h1>Asker is: {{asker}}</h1>\n" +
+   "<h2>Please wait for his question...</h2>\n" +
    "";
 
 templates["spectating.handlebars"] = "<h1>Spectating</h1>\n" +
