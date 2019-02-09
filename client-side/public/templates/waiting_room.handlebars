@@ -2,13 +2,13 @@
 
 <table class="list-group">
     <tr class="list-group-item list-group-item-primary">
-        <th><label>User Name</label></th>
-        <th><label>User Status</label></th>
+        <th colspan="2"><label>User Name</label></th>
+        <th colspan="2"><label>User Status</label></th>
     </tr>
     {{#each users}}
         <tr class="list-group-item list-group-item-light">
-            <td><label>{{this.name}}</label></td>
-            <td><label>{{this.status}}</label></td>
+            <td colspan="2"><label>{{this.name}}</label></td>
+            <td colspan="2"><label>{{this.status}}</label></td>
         </tr>
     {{/each}}
 </table>
