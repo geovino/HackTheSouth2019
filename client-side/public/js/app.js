@@ -14,15 +14,16 @@
 
 
         // Compile Handlebar Templates
-        const askingQuestions = Handlebars.compile(templates['asking_question.handlebars']);
+        const askingQuestion = Handlebars.compile(templates['asking_question.handlebars']);
         const chooseReceiver = Handlebars.compile(templates['choose_receiver.handlebars']);
-        const enterQuestions = Handlebars.compile(templates['enter_questions.handlebars']);
+        const enterQuestion = Handlebars.compile(templates['enter_questions.handlebars']);
         const receivingQuestion = Handlebars.compile(templates['receiving_question.handlebars']);
         const seeAsker = Handlebars.compile(templates['see_asker.handlebars']);
         const spectating = Handlebars.compile(templates['spectating.handlebars']);
         const waitingRoom = Handlebars.compile(templates['waiting_room.handlebars']);
+        const lobby = Handlebars.compile(templates['lobby.handlebars']);
 
-        const html = waitingRoom();
+        const html = lobby();
         el.html(html);
 
         const router = new Router({
@@ -38,12 +39,17 @@
         });
 
         router.add('/', () => {
-          let html = waitingRoom();
+          let html = lobby();
+          el.html(html);
+        });
+
+        router.add('/waiting_room', () => {
+          let html = askingQuestion();
           el.html(html);
         });
 
         router.add('/asking_questions', () => {
-          let html = askingQuestions();
+          let html = askingQuestion();
           el.html(html);
         });
 
@@ -53,12 +59,12 @@
         });
 
         router.add('/enter_questions', () => {
-          let html = enterQuestions();
+          let html = enterQuestion();
           el.html(html);
         });
 
         router.add('/receiving_question', () => {
-          let html = ReceivingQuestion();
+          let html = receivingQuestion();
           el.html(html);
         });
 
