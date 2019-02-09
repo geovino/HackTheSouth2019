@@ -128,6 +128,9 @@
             });
 
             console.log(input);
+
+            state.player = input.name;
+            console.log(state);
             // At that time a receiver is known, so redirect
             return input; // name of the receiver
           });
@@ -139,7 +142,9 @@
         });
 
         router.add('/see_asker', () => {
-          let html = seeAsker();
+          let html = seeAsker({
+            asker: 'Ivacheto'
+          });
           el.html(html);
         });
 
