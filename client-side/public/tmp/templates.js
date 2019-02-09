@@ -1,18 +1,17 @@
 var templates = {};
 
-templates["asking_question.handlebars"] = "\n" +
-   "<div class=\"jumbotron\">\n" +
-   "  <h1 class=\"display-4\">{{asker}}</h1>\n" +
-   "  <p class=\"lead\">is asking a question</p>\n" +
+templates["asking_question.handlebars"] = "<div class=\"jumbotron\">\n" +
+   "    <h1 class=\"display-4\">{{question}}</h1>\n" +
    "</div>\n" +
    "\n" +
+   "<div class=\"clock\">\n" +
+   "   <span class=\"short-hand\"></span>\n" +
+   "   <span class=\"long-hand\"></span>\n" +
+   "   <span class=\"nut\"></span>\n" +
+   "</div>\n" +
    "\n" +
-   "<div>\n" +
-   "    <div class=\"col-2\"></div>\n" +
-   "        <div class=\"col-8\">\n" +
-   "            <i class= \"fa fa-question-circle fa-10x\" style=\"font-size: 20em;\"></i>\n" +
-   "        </div>\n" +
-   "    <div class=\"col-2\"></div>\n" +
+   "<div class=\"text-center\" style=\"margin-top: 10px;\">\n" +
+   "    <button type=\"button\" class=\"btn btn-success\">I Accept this answer</button>\n" +
    "</div>\n" +
    "\n" +
    "\n" +
@@ -99,9 +98,18 @@ templates["lobby.handlebars"] = "<header>\n" +
 templates["receiving_question.handlebars"] = "<h1>Receiving Question</h1>\n" +
    "";
 
-templates["see_asker.handlebars"] = "<h1>Asker is: {{asker}}</h1>\n" +
-   "<h2>Please wait for his question...</h2>\n" +
-   "";
+templates["see_asker.handlebars"] = "<div class=\"jumbotron\">\n" +
+   "    <h1 class=\"display-4\" >Asker is: {{asker}}</h1>\n" +
+   "    <h2 class=\"display-6\">Please wait for his question...</h2>\n" +
+   "</div>\n" +
+   "\n" +
+   "<div>\n" +
+   "    <div class=\"col-2\"></div>\n" +
+   "        <div class=\"col-8\">\n" +
+   "            <i class= \"fa fa-question-circle fa-10x\" style=\"font-size: 20em;\"></i>\n" +
+   "        </div>\n" +
+   "    <div class=\"col-2\"></div>\n" +
+   "</div>";
 
 templates["spectating.handlebars"] = "<h1>Spectating</h1>\n" +
    "";

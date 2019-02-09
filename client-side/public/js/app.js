@@ -69,7 +69,7 @@
 
         router.add('/asking_question', () => {
           let html = askingQuestion({
-            asker:"Ivo"
+            question: "Ask someone ~this"
           });
           el.html(html);
         });
