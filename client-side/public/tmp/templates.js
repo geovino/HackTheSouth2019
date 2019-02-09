@@ -1,6 +1,22 @@
 var templates = {};
 
-templates["asking_question.handlebars"] = "<h1>Asking Question</h1>";
+templates["asking_question.handlebars"] = "\n" +
+   "<div class=\"jumbotron\">\n" +
+   "  <h1 class=\"display-4\">{{asker}}</h1>\n" +
+   "  <p class=\"lead\">is asking a question</p>\n" +
+   "</div>\n" +
+   "\n" +
+   "\n" +
+   "<div>\n" +
+   "    <div class=\"col-2\"></div>\n" +
+   "        <div class=\"col-8\">\n" +
+   "            <i class= \"fa fa-question-circle fa-10x\" style=\"font-size: 20em;\"></i>\n" +
+   "        </div>\n" +
+   "    <div class=\"col-2\"></div>\n" +
+   "</div>\n" +
+   "\n" +
+   "\n" +
+   "";
 
 templates["choose_receiver.handlebars"] = "<h1>Choose Receiver</h1>\n" +
    "<div class=\"list-group\">\n" +
@@ -30,7 +46,7 @@ templates["enter_questions.handlebars"] = "<div class=\"container\">\n" +
    "            <div class=\"col-8\">\n" +
    "                <div class=\"form-group\">\n" +
    "                    <label for=\"realname\">Name</label>\n" +
-   "                    <input type=\"text\" class=\"form-control\" id=\"realname\" placeholder=\"Write your name here\">\n" +
+   "                    <input type=\"text\" class=\"form-control realname\" id=\"realname\" placeholder=\"Write your name here\">\n" +
    "                </div>\n" +
    "            </div>\n" +
    "\n" +
@@ -43,8 +59,8 @@ templates["enter_questions.handlebars"] = "<div class=\"container\">\n" +
    "            <div class=\"col-8\">\n" +
    "                {{#each questions}}\n" +
    "                    <div class=\"form-group\">\n" +
-   "                        <label for=\"question{{this}}\">Question {{this}}</label>\n" +
-   "                        <textarea class=\"form-control\" id=\"question{{this}}\" placeholder=\"Write your first question here\"></textarea>\n" +
+   "                        <label for=\"userQuestion\">Question {{this}}</label>\n" +
+   "                        <textarea class=\"form-control userQuestion\" placeholder=\"Write your first question here\"></textarea>\n" +
    "                    </div>\n" +
    "                {{/each}}\n" +
    "            </div>\n" +
@@ -52,7 +68,7 @@ templates["enter_questions.handlebars"] = "<div class=\"container\">\n" +
    "            </div>\n" +
    "        </div>\n" +
    "        <div class=\"row\">\n" +
-   "            <button type=\"button\" class=\"btn btn-primary btn-sm\">I'm ready</button>\n" +
+   "            <button type=\"button\" class=\"btn btn-primary btn-sm readyButton\">I'm ready</button>\n" +
    "        </div>\n" +
    "    </form>\n" +
    "</div>\n" +
@@ -98,6 +114,7 @@ templates["see_asker.handlebars"] = "<h1>See Asker</h1>\n" +
 templates["spectating.handlebars"] = "<h1>Spectating</h1>\n" +
    "";
 
+<<<<<<< HEAD
 templates["waiting_room.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    <div class=\"row justify-content-lg-center\">\n" +
    "        <div class=\"col-lg-auto\">\n" +
@@ -204,11 +221,22 @@ templates["waiting_room.handlebars"] = "<div class=\"container-fluid\">\n" +
    "                                Ready\n" +
    "                            </div>\n" +
    "                        </div>\n" +
+=======
+templates["waiting_room.handlebars"] = "<h1>Waiting room</h1>\n" +
    "\n" +
-   "                    </div>\n" +
-   "            </div>\n" +
-   "        </div>\n" +
-   "    </div>\n" +
-   "</div>\n" +
-   " --}}\n" +
-   "";
+   "<table class=\"list-group\">\n" +
+   "    <tr class=\"list-group-item list-group-item-primary\">\n" +
+   "        <th colspan=\"2\"><label>User Name</label></th>\n" +
+   "        <th colspan=\"2\"><label>User Status</label></th>\n" +
+   "    </tr>\n" +
+   "    {{#each users}}\n" +
+   "        <tr class=\"list-group-item list-group-item-light\">\n" +
+   "            <td colspan=\"2\"><label>{{this.name}}</label></td>\n" +
+   "            <td colspan=\"2\"><label>{{this.status}}</label></td>\n" +
+   "        </tr>\n" +
+   "    {{/each}}\n" +
+   "</table>\n" +
+   "\n" +
+>>>>>>> cede7ea16e9dc8ce51cdc2c9671a7d9e11db1556
+   "\n" +
+   " ";

@@ -19,7 +19,7 @@
             <div class="col-8">
                 <div class="form-group">
                     <label for="realname">Name</label>
-                    <input type="text" class="form-control" id="realname" placeholder="Write your name here">
+                    <input type="text" class="form-control realname" id="realname" placeholder="Write your name here">
                 </div>
             </div>
 
@@ -32,8 +32,8 @@
             <div class="col-8">
                 {{#each questions}}
                     <div class="form-group">
-                        <label for="question{{this}}">Question {{this}}</label>
-                        <textarea class="form-control" id="question{{this}}" placeholder="Write your first question here"></textarea>
+                        <label for="userQuestion">Question {{this}}</label>
+                        <textarea class="form-control userQuestion" placeholder="Write your first question here"></textarea>
                     </div>
                 {{/each}}
             </div>
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="row">
-            <button type="button" class="btn btn-primary btn-sm">I'm ready</button>
+            <button type="button" class="btn btn-primary btn-sm readyButton">I'm ready</button>
         </div>
     </form>
 </div>
