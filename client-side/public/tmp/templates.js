@@ -119,13 +119,13 @@ templates["waiting_room.handlebars"] = "<h1>Waiting room</h1>\n" +
    "\n" +
    "<table class=\"list-group\">\n" +
    "    <tr class=\"list-group-item list-group-item-primary\">\n" +
-   "        <th><label>User Name</label></th>\n" +
-   "        <th><label>User Status</label></th>\n" +
+   "        <th colspan=\"2\"><label>User Name</label></th>\n" +
+   "        <th colspan=\"2\"><label>User Status</label></th>\n" +
    "    </tr>\n" +
    "    {{#each users}}\n" +
    "        <tr class=\"list-group-item list-group-item-light\">\n" +
-   "            <td><label>{{this.name}}</label></td>\n" +
-   "            <td><label>{{this.status}}</label></td>\n" +
+   "            <td colspan=\"2\"><label>{{this.name}}</label></td>\n" +
+   "            <td colspan=\"2\"><label>{{this.status}}</label></td>\n" +
    "        </tr>\n" +
    "    {{/each}}\n" +
    "</table>\n" +
