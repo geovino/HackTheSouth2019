@@ -59,7 +59,9 @@
         });
 
         router.add('/enter_questions', () => {
-          let html = enterQuestion();
+          let html = enterQuestion({
+            questions: [1, 2, 3]
+          });
           el.html(html);
         });
 
