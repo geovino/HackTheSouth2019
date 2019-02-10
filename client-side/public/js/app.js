@@ -194,7 +194,7 @@
             //change this to the three questions
 
 
-            questions: [1, 2, 3]
+            // questions: [1, 2, 3]
           // });
           // el.html(html);
 
