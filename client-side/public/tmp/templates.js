@@ -28,10 +28,10 @@ templates["asking_question.handlebars"] = "<div class=\"container-fluid\">\n" +
 templates["choose_receiver.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    <div class=\"row justify-content-lg-center\">\n" +
    "        <div class=\"col-lg-auto\">\n" +
-   "      <h2 class=\"fancyheading\">Whom will you ask <span class=\"highlight question\">\"Who was your first crush?\"</span>?</h2>\n" +
-   "      <ul class=\"player-list\">\n" +
+   "      <h2 class=\"fancyheading\">Whom will you ask \"<span class=\"highlight question\" id=\"askedQuestion\">{{question}}</span>\"?</h2>\n" +
+   "      <ul id=\"receiver-choice-list\" class=\"player-list\">\n" +
    "          {{#each people}}\n" +
-   "              <li class=\"player-button\">{{this.name}}</li>\n" +
+   "              <li class=\"player-button\">{{this.player_name}}</li>\n" +
    "          {{/each}}\n" +
    "      </ul>\n" +
    "    </div>\n" +

@@ -106,11 +106,6 @@
           });
           el.html(html);
 
-          receiver.onGeneratedQuestion((question, potentialReceivers) => {
-              state.asker.question = question;
-              state.asker.potentialReceivers = potentialReceivers;
-          });
-
           // click button for satisfy or wait for time limit
           sender.notifyResponse(roomid);
 
@@ -159,17 +154,8 @@
         router.add('{roomid}/choose_receiver', (roomid) => {
           // Get names
           let html = chooseReceiver({
-            people: [
-              {
-                name: "Niki the smart guy"
-              },
-              {
-                name: "Ivo (The BOSS) Mladenov"
-              },
-              {
-                name: "Timmy"
-              }
-            ]
+            people: state.players,
+            question: state.asker.question
           });
           el.html(html);
           $('.userButton').each(function(roomid) {
@@ -253,6 +239,7 @@
           receiver.onAskerChosen(state.name, (asker) => {
             if (state.name === asker) {
                 state.asker.asker = state.name;
+                console.log(state);
                 router.navigateTo('/' + roomid + '/choose_receiver');
             } else {
                 state.asker.asker = asker;
@@ -302,8 +289,25 @@
           });
         });
 
+        var choiceButton = Handlebars.compile('<li class="player-button">{{player_name}}</li>');
+
+        receiver.onGeneratedQuestion((question, potentialReceivers) => {
+          state.asker.question = question;
+          state.asker.potentialReceivers = potentialReceivers;
+          $("#askedQuestion").text(state.asker.question);
+          $("#receiver-choice-list").empty();
+          state.asker.potentialReceivers.forEach((receiver) => {
+            $("#receiver-choice-list").append(choiceButton({player_name: receiver}));
+          });
+
+          
+          $(".player-button").each(function(index) {
+            let chosen = $(this).text();
+            sender.chooseReceiver(state.roomid, chosen);
+          });
+      });
+
         receiver.onUserCreated((userId, numQuestions) => {
-          console.log('event received for user created');
           state.questionCount = numQuestions;
           state.userId = userId;
           router.navigateTo('/' + state.roomid + '/enter_questions');
@@ -312,12 +316,10 @@
 
         receiver.onPlayersCountChanged((msg) => {
           state.players = msg;
-          console.log(msg);
           if ($("#player-listing") !== undefined) {
             $("#player-listing").empty();
 
             msg.forEach((player) => {
-              console.log(player);
               player.displayStatus = player.questions_count === 3 ? "ready" : "still thinking";
               $("#player-listing").append(playerDisplayTemplate({
                 player_name: player.player_name,

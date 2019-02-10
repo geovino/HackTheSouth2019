@@ -27,7 +27,7 @@ sender.createQuestion = function(roomId, userId, question) {
 sender.chooseReceiver = function(roomId, username) {
     const msg = {
         room_id: roomId,
-        username: username
+        receiver: username
     };
 
     return socket.emit('choose_receiver', JSON.stringify(msg));

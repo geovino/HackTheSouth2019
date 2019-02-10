@@ -8,7 +8,7 @@ receiver.onAskerChosen = function(username, callback) {
 };
 
 receiver.onGeneratedQuestion = function(callback) {
-    return socket.on('receiver_chosen', function(msg) {
+    return socket.on('generated_question', function(msg) {
         return callback(msg.question, msg.potential_receivers);
     });
 };
@@ -20,7 +20,7 @@ receiver.onQuestionCreated = function(callback) {
 };
 
 receiver.onReceiverChosen = function(callback) {
-    return socket.on('receiver_chosen', function(msg) {
+    return socket.on('choose_receiver', function(msg) {
         return callback(msg.receiver);
     });
 };
