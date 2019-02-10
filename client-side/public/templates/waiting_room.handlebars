@@ -4,13 +4,14 @@
             <h1 class="fancyheading">It'll only be a moment.</h1>
             <h3 class="fancyheading">The others are thinking up questions.</h3>
 
-            <ul class="player-list">
-            {{#each users}}
-                <li class="player-display">{{this.name}} is <span class="highlight">{{this.displayStatus}}</span>.</li>
-            {{/each}}
-            </ul>
         </div>
     </div>
+    <div class="div" style="text-align: center">
+    {{#each users}}
+        <div class="player-display col-12">{{this.name}} is <span class="highlight">{{this.displayStatus}}</span>.</div><br>
+    {{/each}}
+    </div>
+
     <div class="medium-info">
         <span class="highlight">3/5</span> people have joined
     </div>
