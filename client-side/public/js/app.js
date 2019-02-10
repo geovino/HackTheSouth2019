@@ -3,7 +3,8 @@
 
     const state = {
       name: null,
-      questions: []
+      questions: [],
+      questionCount: 0
     };
 
     window.addEventListener('load', () => {
@@ -126,10 +127,36 @@
         });
 
         router.add('/enter_questions', () => {
-          let html = enterQuestion({
-            questions: [1, 2, 3]
-          });
+
+
+          let html = enterQuestion();
           el.html(html);
+
+          $('.questionButton').on('click', function(event) {
+            let $questionText = $('#questionArea').val();
+            if ($questionText.length !== 0) {
+              state.questions.push($questionText);
+              state.questionCount +=1;
+
+              //set the number of answered questions in template -- does not work
+              $('#questionsDone').text(state.questionCount + "/3");
+              console.log("something pls", $('#questionsDone').text());
+              if (state.questionCount == 3) {
+                state.questionCount = 0;
+                // player is done => set him as ready here
+              }
+            }
+            //clear the text area
+            $('#questionArea').val('');
+          });
+
+          // let html = enterQuestion({
+            //change this to the three questions
+
+            
+            questions: [1, 2, 3]
+          // });
+          // el.html(html);
 
           let input = {
             name: state.player,
@@ -199,7 +226,20 @@
         }
 
         function onQuestionEntered() {
+          console.log("asdfas");
 
+          // let html = enterQuestion();
+          // el.html(html);
+
+          // $('.questionButton').on('click', function(event) {
+          //   console.log(event);
+          //   let $questionText = $('.questionArea');
+          //   console.log($questionText);
+            // if ($realnameElem.length == 1 && $realnameElem[0].value) {
+            //   state.name = $realnameElem[0].value;
+            // }
+            // console.log(state);
+          // });
         }
 
         function onReady() {
