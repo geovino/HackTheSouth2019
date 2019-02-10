@@ -22,7 +22,7 @@ class RoomsAPI(MethodView):
 
         room_identifier = Database.create_room(room["number_of_players"])
 
-        return jsonify({"identifier": room_identifier}), 201
+        return jsonify({"identifier": room_identifier}), 200
 
     def get(self):
         '''
