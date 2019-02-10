@@ -11,8 +11,8 @@ class Database:
 
     @staticmethod
     def generate_uid():
-        return str(uuid.uuid4())
-        # return '1'
+        # return str(uuid.uuid4())
+        return '1'
 
     # ------------------ ROOM ----------------------
     @staticmethod
@@ -29,6 +29,7 @@ class Database:
             "current_players": 0,
             "questions_required": 3,
             "current_asker": None,
+            "last_receiver": None
         }
 
         DATABASE['rooms'][id_] = room_value
@@ -47,7 +48,7 @@ class Database:
         if room_id not in DATABASE['rooms']:
             return -1
 
-        del DATABASE['rooms'][room_id];
+        DATABASE['rooms'].pop(room_id);
 
         return 0
 
@@ -55,13 +56,16 @@ class Database:
 
     # ------------------ PLAYER ----------------------
     @staticmethod
-    def create_player(room_id, name, session_id):
-    # def create_player(room_id, name, session_id, player_id):
+    # def create_player(room_id, name, session_id):
+    def create_player(room_id, name, session_id, player_id):
         if room_id not in DATABASE['rooms']:
             return None, -1
 
+        if len(DATABASE['rooms'][room_id]['players']) >= DATABASE['rooms'][room_id]['total_players']:
+            return None, -1
+
         for pl in DATABASE['rooms'][room_id]['players']:
-            if DATABASE['rooms'][room_id]['players'][pl] == name:
+            if DATABASE['rooms'][room_id]['players'][pl]['name'] == name:
                 return None, -1
 
         id_ = Database.generate_uid()
@@ -71,20 +75,30 @@ class Database:
             "session_id": session_id
         }
 
-        DATABASE['rooms'][room_id]['players'][id_] = player_value
-        # DATABASE['rooms'][room_id]['players'][player_id] = player_value
+        # DATABASE['rooms'][room_id]['players'][id_] = player_value
+        DATABASE['rooms'][room_id]['players'][player_id] = player_value
 
         DATABASE['rooms'][room_id]['current_players'] += 1
 
-        return id_, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
-        # return player_id, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
+        # return id_, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
+        return player_id, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
 
     @staticmethod
-    def get_players(room_id):
+    def delete_player(room_id, name):
         if room_id not in DATABASE['rooms']:
             return None
 
-        return DATABASE['rooms'][room_id]['players']
+        for pl in DATABASE['rooms'][room_id]['players']:
+            if DATABASE['rooms'][room_id]['players'][pl]['name'] == name:
+                DATABASE['rooms'][room_id]['last_receiver'] = pl
+
+                DATABASE['rooms'][room_id]['players'].pop(pl)
+
+                Database.set_askers_order(room_id)
+
+                return 0
+
+        return None
 
     @staticmethod
     def get_session_id(room_id, player_id):
@@ -111,6 +125,13 @@ class Database:
 
         return DATABASE['rooms'][room_id]['questions_required'] - DATABASE['rooms'][room_id]['players'][player_id]['questions_count']
 
+    @staticmethod
+    def get_players(room_id):
+        if room_id not in DATABASE['rooms']:
+            return None
+
+        return DATABASE['rooms'][room_id]['players']
+
     # ------------------ PLAYER END ----------------------
 
     # ------------------ ASKER ----------------------
@@ -119,7 +140,7 @@ class Database:
         if room_id not in DATABASE['rooms']:
             return None
 
-        players = DATABASE["rooms"][room_id]["players"].keys()
+        players = list(DATABASE["rooms"][room_id]["players"].keys())
 
         random.shuffle(players)
 
@@ -213,24 +234,6 @@ class Database:
     # ------------------ TESTING ----------------------
     def get():
         return DATABASE
-
-
-# print(Database.create_room(4))
-# print("+-> ",Database.create_player('1','a','a1','1'))
-# # print(Database.player_enters_question('1','1','a'))
-# # print(Database.player_enters_question('1','1','b'))
-# # print(Database.player_enters_question('1','1','c'))
-# # print(Database.get_session_id('1','1'))
-
-
-# print("+-> ",Database.create_player('1','a','a1','2'))
-# # print(Database.player_enters_question('1','1','a'))
-# # print(Database.player_enters_question('1','1','b'))
-# # print(Database.player_enters_question('1','1','c'))
-# # print(Database.get_session_id('1','1'))
-
-# # print(Database.get_question('1'))
-# print(Database.get())
 
     # ------------------ TESTING END ----------------------
 
