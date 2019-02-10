@@ -30,6 +30,40 @@ h2.fancyheading {
 }
 
 
+h1.display-title {
+  color: #f2cb0c;
+  display: inline-block;
+  font-size: 5em;
+  background: #0f0a0a;
+  margin: 70px auto 5px auto;
+  padding: 5px 30px;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Magra', serif;
+}
+
+
+h2.display-subtitle {
+  color: #0f0a0a;
+  font-size: 2.3em;
+  display: inline-block;
+  margin: 30px 0px;
+  background: #f5efed;
+  padding: 5px 20px;
+  text-align: center;
+  font-family: 'Chewy', serif;
+}
+
+
+h2.fancyheading {
+  color: #f2cb0c;
+  font-size: 2.3em;
+  margin: 30px 0px;
+  text-align: center;
+  font-family: 'Chewy', serif;
+}
+
+
 span.question {
   font-size: 1.2em;
   background: #ef7300;
@@ -113,6 +147,15 @@ ul.player-list {
   font-family: 'Chewy', serif;
 }
 
+
+.boatbg {
+  background-image: url("../img/boat.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+}
+
 li.player-button {
   cursor: pointer;
   color: #0f0a0a;
@@ -157,6 +200,10 @@ li.player-button {
   box-shadow: 0px 2px 6px -3px rgba(0,0,0,1);
 }
 
+
+.hidden {
+  display: none !important;
+}
 
 .question-input::placeholder {
   color: 0f0a0a;
