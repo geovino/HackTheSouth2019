@@ -61,7 +61,7 @@ templates["enter_questions.handlebars"] = "<div class=\"container-fluid\">\n" +
    "            <textarea class=\"question-input\" placeholder=\"Write your a question here!\" id=\"questionArea\"></textarea>\n" +
    "        </div>\n" +
    "    </div>\n" +
-   "    <div class=\"medium-info\"><span class=\"highlight\" id=\"questionsDone\">{{this.questions.length}}/{{this.questionCount}}</span> \n" +
+   "    <div class=\"medium-info\"><span class=\"highlight\" id=\"questionsDone\">{{this.questions.length}}/{{this.questionCount}}</span>\n" +
    "     questions sent.</div>\n" +
    "    <button type=\"button\" class=\"fancy questionButton\">Send question</button>\n" +
    "</div>\n" +
@@ -70,9 +70,9 @@ templates["enter_questions.handlebars"] = "<div class=\"container-fluid\">\n" +
 templates["lobby.handlebars"] = "<div class=\"container-fluid boatbg\">\n" +
    "    <div class=\"row justify-content-lg-center\">\n" +
    "        <div class=\"col-lg-auto\" style=\"text-align: center;\">\n" +
-   "            <h1 class=\"display-title\">Bluetato</h1><br>\n" +
+   "            <h1 class=\"display-title\"><span style=\"color: #0f42fc;\">Blue</span>tato</h1><br>\n" +
    "            <h2 class=\"display-subtitle\" style=\"margin-bottom: 0px;\">We were planning to use bluetooth.</h2><br>\n" +
-   "            <h2 class=\"display-subtitle\" style=\"margin-top: 0px;\">We compromised and we made the website blue!</h2>\n" +
+   "            <h2 class=\"display-subtitle\" style=\"margin-top: 0px;\">We compromised and we made the website <span style=\"color: blue;\">blue</span>!</h2>\n" +
    "        </div>\n" +
    "    </div>\n" +
    "\n" +
@@ -80,7 +80,7 @@ templates["lobby.handlebars"] = "<div class=\"container-fluid boatbg\">\n" +
    "\n" +
    "    <div class=\"row justify-content-lg-center hidden\" id=\"link-present\">\n" +
    "        <div class=\"col-lg-auto\" style=\"text-align: center;\">\n" +
-   "            <h2 class=\"display-subtitle\" style=\"margin-bottom: 0px;\">Room succesfully created. Hers your code:</h2><br>\n" +
+   "            <h2 class=\"display-subtitle\" style=\"margin-bottom: 0px;\">Room succesfully created. Here's your code:</h2><br>\n" +
    "            <h2 class=\"display-subtitle\" style=\"margin-top: 0px;\"><a href=\"#\" id=\"link-display\">Your code</a></h2>\n" +
    "        </div>\n" +
    "    </div>\n" +
@@ -151,7 +151,7 @@ templates["waiting_room.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    </div>\n" +
    "\n" +
    "    <div class=\"medium-info\">\n" +
-   "        <span class=\"highlight\">3/5</span> people have joined\n" +
+   "        <span class=\"highlight\">6/6</span> people have joined\n" +
    "    </div>\n" +
    "</div>\n" +
    "\n" +

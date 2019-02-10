@@ -55,7 +55,7 @@
                 type: "post",
                 contentType: "application/json",
                 url: "http://3.8.68.131:8080/rooms/",
-                data: JSON.stringify({ 'number_of_players': 5 }),
+                data: JSON.stringify({ 'number_of_players': 2 }),
                 dataType: "json",
                 crossDomain: true,
                 success: function(data) {
@@ -77,20 +77,33 @@
 
         router.add('{roomid}/waiting_room', (roomid) => {
           console.log(roomid);
+
           let html = waitingRoom({
             users: [
               {
-                name: "Person1",
+                name: "Ivo T.",
                 displayStatus: "ready"
               },
               {
-                name: "Person2",
+                name: "Vezi",
                 displayStatus: "still thinking"
               },
               {
-                name: "Person3",
+                name: "Ivo M.",
                 displayStatus: "ready"
               },
+              {
+                name: "Niki",
+                displayStatus: "ready"
+              },
+              {
+                name: "Spas",
+                displayStatus: "ready"
+              },
+              {
+                name: "Sharunaz",
+                displayStatus: "ready"
+              }
             ]
           });
           el.html(html);
@@ -118,14 +131,14 @@
 
           receiver.onUserCreated((userId, numQuestions) => {
             state.questionCount = numQuestions;
-            router.navigateTo('/enter_questions');
+            router.navigateTo('/' + roomid + '/enter_questions');
           });
 
           $('.nameButton').on('click', function(event) {
             let $realnameElem = $('.realname');
             if ($realnameElem.length == 1 && $realnameElem[0].value) {
               state.name = $realnameElem[0].value;
-              sender.createUser('ca9e11de-8648-4e22-a330-def94e4bad8f', state.name);
+              sender.createUser(roomid, state.name);
             }
           });
 
@@ -181,10 +194,10 @@
             }
 
             if (state.questionCount - state.questions.length === 0) {
-              router.navigateTo('/waiting_room');
+              router.navigateTo('/' + roomid + '/waiting_room');
             }
 
-            sender.createQuestion('ca9e11de-8648-4e22-a330-def94e4bad8f', state.name, $questionText);
+            sender.createQuestion(roomid, state.name, $questionText);
 
             //clear the text area
             $('#questionArea').val('');
@@ -215,7 +228,7 @@
             state.player = input.name;
             console.log(state);
             // At that time a receiver is known, so redirect
-            router.navigateTo('/waiting_room');
+            router.navigateTo('/' + roomid + '/waiting_room');
             return input; // name of the receiver
           });
         });
