@@ -48,7 +48,7 @@ templates["enter_name.handlebars"] = "<div class=\"container-fluid\">\n" +
    "            <input type=\"text\" class=\"question-input realname\" id=\"realname\" placeholder=\"Write your name here\">\n" +
    "        </div>\n" +
    "    </div>\n" +
-   "    <button type=\"button\" class=\"fancy\">This is me!</button>\n" +
+   "    <button type=\"button\" class=\"fancy nameButton\">This is me!</button>\n" +
    "</div>\n" +
    "";
 

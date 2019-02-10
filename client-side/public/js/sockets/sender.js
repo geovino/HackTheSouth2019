@@ -16,7 +16,7 @@ sender.createQuestion = function(question) {
     };
 
     return socket.emit('create_question', JSON.stringify(msg));
-}
+};
 
 sender.chooseReceiver = function(roomId, username) {
     const msg = {
@@ -25,7 +25,7 @@ sender.chooseReceiver = function(roomId, username) {
     };
 
     return socket.emit('choose_receiver', JSON.stringify(msg));
-}
+};
 
 sender.notifyResponse = function(roomId) {
     const msg = {
@@ -33,5 +33,5 @@ sender.notifyResponse = function(roomId) {
     };
 
     return socket.emit('notify_response', JSON.stringify(msg))
-}
+};
 
