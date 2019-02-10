@@ -11,8 +11,8 @@ class Database:
 
     @staticmethod
     def generate_uid():
-        # return str(uuid.uuid4())
-        return '1'
+        return str(uuid.uuid4())
+        #return '1'
 
     # ------------------ ROOM ----------------------
     @staticmethod
@@ -56,8 +56,8 @@ class Database:
 
     # ------------------ PLAYER ----------------------
     @staticmethod
-    # def create_player(room_id, name, session_id):
-    def create_player(room_id, name, session_id, player_id):
+    def create_player(room_id, name, session_id):
+    #def create_player(room_id, name, session_id, player_id):
         if room_id not in DATABASE['rooms']:
             return None, -1
 
@@ -75,13 +75,13 @@ class Database:
             "session_id": session_id
         }
 
-        # DATABASE['rooms'][room_id]['players'][id_] = player_value
-        DATABASE['rooms'][room_id]['players'][player_id] = player_value
+        DATABASE['rooms'][room_id]['players'][id_] = player_value
+        # DATABASE['rooms'][room_id]['players'][player_id] = player_value
 
         DATABASE['rooms'][room_id]['current_players'] += 1
 
-        # return id_, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
-        return player_id, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
+        return id_, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
+        # return player_id, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
 
     @staticmethod
     def delete_player(room_id, name):
