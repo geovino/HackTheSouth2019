@@ -1,0 +1,27 @@
+{
+    "rooms": {
+        "_id": { // _id is primary key
+            "short_id":"creator defined_id",
+            "players": {
+                "player_id": {
+                    "name": "nickname",
+                    "questions_count": 0,
+                    "session_id":"id",
+                    // "score": 10,
+                }
+            },
+            "questions": [
+                "question_1",
+                "questions_2"
+            ],
+            "total_players":1,
+            "current_players":1,
+            "asker_queue":[],
+            "questions_required":1,
+            "last_receiver":"id"
+        }, 
+        "room_two_id": {
+
+        }
+    }
+}
