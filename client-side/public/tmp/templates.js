@@ -132,13 +132,14 @@ templates["waiting_room.handlebars"] = "<div class=\"container-fluid\">\n" +
    "            <h1 class=\"fancyheading\">It'll only be a moment.</h1>\n" +
    "            <h3 class=\"fancyheading\">The others are thinking up questions.</h3>\n" +
    "\n" +
-   "            <ul class=\"player-list\">\n" +
-   "            {{#each users}}\n" +
-   "                <li class=\"player-display\">{{this.name}} is <span class=\"highlight\">{{this.displayStatus}}</span>.</li>\n" +
-   "            {{/each}}\n" +
-   "            </ul>\n" +
    "        </div>\n" +
    "    </div>\n" +
+   "    <div class=\"div\" style=\"text-align: center\">\n" +
+   "    {{#each users}}\n" +
+   "        <div class=\"player-display col-12\">{{this.name}} is <span class=\"highlight\">{{this.displayStatus}}</span>.</div><br>\n" +
+   "    {{/each}}\n" +
+   "    </div>\n" +
+   "\n" +
    "    <div class=\"medium-info\">\n" +
    "        <span class=\"highlight\">3/5</span> people have joined\n" +
    "    </div>\n" +
