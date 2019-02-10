@@ -237,7 +237,7 @@ class Database:
 
 
     def get_rooms_ids():
-        return list(DATABASE.keys())
+        return list(DATABASE['rooms'].keys())
 
     # ------------------ TESTING END ----------------------
 
