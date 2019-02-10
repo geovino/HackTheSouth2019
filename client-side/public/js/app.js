@@ -5,6 +5,10 @@
       name: null,
       questions: [],
       questionCount: 0,
+      gameStarted: false, // VERY IMPORTANT WHEN RECEIVING asker_chosen EVENT
+      players: [],
+      asker: {},
+      receiver: {}
     };
 
     window.addEventListener('load', () => {
@@ -56,24 +60,35 @@
         });
 
         router.add('/{roomid}/waiting_room', (roomid) => {
-          console.log(roomid);
-          let html = waitingRoom({
-            users: [
-              {
-                name: "Person1",
-                displayStatus: "ready"
-              },
-              {
-                name: "Person2",
-                displayStatus: "still thinking"
-              },
-              {
-                name: "Person3",
-                displayStatus: "ready"
-              },
-            ]
-          });
+          let html = waitingRoom(state.players);
           el.html(html);
+
+          state.players = [
+            {
+              name: "Person1",
+              displayStatus: "ready"
+            },
+            {
+              name: "Person2",
+              displayStatus: "still thinking"
+            },
+            {
+              name: "Person3",
+              displayStatus: "ready"
+            },
+          ]
+
+          // receiver.onPlayersCountChanged((playersLeft) => {
+          //   state.players = playersLeft;
+          // });
+
+          receiver.onAskerChosen(state.name, (isAsker) => {
+              if (isAsker) {
+                  router.navigateTo('/asking_question');
+              } else {
+                  router.navigateTo('/see_asker');
+              }
+          });
         });
 
 
@@ -89,6 +104,11 @@
             question: "Ask someone ~this"
           });
           el.html(html);
+
+          receiver.onGeneratedQuestion((question, potentialReceivers) => {
+              state.asker.question = question;
+              state.asker.potentialReceivers = potentialReceivers;
+          });
         });
 
 
@@ -241,6 +261,13 @@
 
         function onJoinRoom() {
           router.navigateTo('/enter_questions');
+        }
+
+        function deleteAskerData() {
+          state.asker = {
+            question: null,
+            potentialReceivers: []
+          };
         }
 
         function onQuestionEntered() {

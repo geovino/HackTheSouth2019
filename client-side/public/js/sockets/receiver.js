@@ -50,7 +50,7 @@ receiver.onUserCreated = function(callback) {
     });
 };
 
-receiver.players_count_changed = function(callback) {
+receiver.onPlayersCountChanged = function(callback) {
     return socket.on('players_count_changed', function(msg) {
         return callback(msg.players_left);
     });
