@@ -10,18 +10,17 @@ from bluetato_server.database import Database
 rooms_blueprint = Blueprint('rooms', __name__, url_prefix='/rooms')
 CORS(rooms_blueprint)
 
+
 class RoomsAPI(MethodView):
 
     def post(self):
-
         room = request.json
-
         if room is None:  # request body couldn't be parsed as JSON
             return jsonify({'title': 'Bad request', 'msg': 'Invalid input data for room creation.'}), 400
 
         room_identifier = Database.create_room(room["number_of_players"])
 
-        return jsonify({"identifier": room_identifier}), 201
+        return jsonify({"identifier": room_identifier}), 200
 
     def get(self):
         '''
@@ -39,7 +38,6 @@ rooms_blueprint.add_url_rule('/', view_func=RoomsAPI.as_view('api_rooms'))
 class RoomsInstanceAPI(MethodView):
 
     def get(self, identifier):
-
         room_instance = Database.get_room(identifier)
 
         if room_instance is None:
@@ -54,20 +52,20 @@ rooms_blueprint.add_url_rule('/<string:identifier>', view_func=RoomsInstanceAPI.
 class RoomsNamespace(Namespace):
 
     def on_create_user(self, data):
-
         try:
             user = loads(data)
         except ValueError:
             emit("error", "Invalid input data when creating a user.")
             return
 
-        user_uuid, players_left = Database.create_player(user["room_id"], user["username"], request.sid)
+        user_uuid, players = Database.create_player(user["room_id"], user["username"], request.sid)
 
         if user_uuid is None:
             emit("error", "Invalid input data when creating a user.")
 
         emit("user_created", {"user_key": user_uuid}, json=True)
-        emit("players_count_changed", {"players_left": players_left}, json=True, broadcast=True)
+        print(players)
+        emit("players_count_changed", players, json=True, broadcast=True)
 
     def on_create_question(self, data):
 
@@ -88,6 +86,10 @@ class RoomsNamespace(Namespace):
         if Database.questions_ready(room_id):
             asker = Database.set_askers_order(room_id)
             self.choose_new_question_and_asker(room_id, asker=asker)
+        else:
+            players = Database.get_updated_players(room_id)
+            print(players)
+            emit("players_count_changed", players, json=True, broadcast=True)
 
     def on_choose_receiver(self, data):
 

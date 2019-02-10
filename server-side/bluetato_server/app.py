@@ -8,4 +8,4 @@ app_instance.register_blueprint(rooms_blueprint)
 app_instance.config['CORS_HEADER'] = 'Content-Type'
 
 socketio = SocketIO(app_instance)
-socketio.on_namespace(RoomsNamespace('/rooms'))
+socketio.on_namespace(RoomsNamespace('/'))
