@@ -1,10 +1,12 @@
-<div class="list-group">
-    <div class='container'>
-        <h1 class='whiteLabels'>Choose Receiver</h1>
-        <div class="col-2"></div>
-        {{#each people}}
-            <button type="button" class="list-group-item list-group-item-action userButton">{{this.name}}</button>
-        {{/each}}
-        <div class="col-2"></div>
+<div class="container-fluid">
+    <div class="row justify-content-lg-center">
+        <div class="col-lg-auto">
+      <h2 class="fancyheading">Whom will you ask <span class="highlight question">"Who was your first crush?"</span>?</h2>
+      <ul class="player-list">
+          {{#each people}}
+              <li class="player-button">{{this.name}}</li>
+          {{/each}}
+      </ul>
     </div>
+  </div>
 </div>

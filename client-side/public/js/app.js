@@ -25,6 +25,7 @@
         const seeAsker = Handlebars.compile(templates['see_asker.handlebars']);
         const spectating = Handlebars.compile(templates['spectating.handlebars']);
         const waitingRoom = Handlebars.compile(templates['waiting_room.handlebars']);
+        const enterName = Handlebars.compile(templates['enter_name.handlebars']);
         const lobby = Handlebars.compile(templates['lobby.handlebars']);
 
         const html = lobby();
@@ -74,6 +75,12 @@
           el.html(html);
         });
 
+
+        router.add('/enter_name', () => {
+          let html = enterName();
+          el.html(html);
+        });
+
         router.add('/choose_receiver', () => {
           // Get names
           let html = chooseReceiver({
@@ -96,7 +103,7 @@
               let receiver = null;
               if ($elem.length == 1 && $elem[0].textContent) {
                 receiver = $elem[0].textContent;
-              } 
+              }
 
               console.log(receiver);
               // At that time a receiver is known, so redirect
@@ -121,9 +128,9 @@
             let $questionsElem = $('.userQuestion');
             if ($realnameElem.length == 1 && $realnameElem[0].value) {
               input.name = $realnameElem[0].value;
-            } 
+            }
 
-            $questionsElem.each(function(index) { 
+            $questionsElem.each(function(index) {
               input.questions[index] = $(this)[0].value;
             });
 
