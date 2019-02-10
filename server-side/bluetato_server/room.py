@@ -18,7 +18,7 @@ class RoomsAPI(MethodView):
         if room is None:  # request body couldn't be parsed as JSON
             return jsonify({'title': 'Bad request', 'msg': 'Invalid input data for room creation.'}), 400
 
-        room_identifier = Database.create_room(room)
+        room_identifier = Database.create_room(room["number_of_players"])
 
         return jsonify({"identifier": room_identifier}), 201
 
