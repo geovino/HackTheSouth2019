@@ -51,7 +51,10 @@ class RoomsNamespace(Namespace):
             emit("error", "Invalid input data when creating a user.")
             return
 
-        user_uuid, players_left = Database.create_player(user["room_id"], user["username"])
+        user_uuid, players_left = Database.create_player(user["room_id"], user["username"], request.sid)
+
+        if user_uuid is None:
+            emit("error", "Invalid input data when creating a user.")
 
         emit("user_created", {"user_key": user_uuid}, json=True)
         emit("players_count_changed", {"players_left": players_left}, json=True, broadcast=True)
@@ -73,9 +76,8 @@ class RoomsNamespace(Namespace):
         emit("question_created", {"questions_left": questions_left}, json=True)
 
         if Database.questions_ready(room_id):
-            emit("asker_chosen", {"asker": Database.set_current_asker(room_id)}, json=True, broadcast=True)
-            genereated_question = Database.get_question(room_id)
-            emit("generated_question", {"question": genereated_question}, json=True, broadcast=True)
+            asker = Database.set_askers_order(room_id)
+            self.choose_new_question_and_asker(room_id, asker=asker)
 
     def on_choose_receiver(self, data):
 
@@ -86,8 +88,13 @@ class RoomsNamespace(Namespace):
             return
 
         room_id = player["room_id"]
+        receiver = player["receiver"]
 
-        emit("receiver_chosen", {"receiver": player["receiver"]}, json=True, broadcast=True)
+        if Database.set_last_receiver(room_id, receiver) is None:
+            emit("error", "Invalid input data when choosing receiver.")
+            return
+
+        emit("receiver_chosen", {"receiver": receiver}, json=True, broadcast=True)
 
         Timer(30, self._timeout_callback, args=[Database.get_current_asker(room_id), player["receiver"], room_id]).start()
 
@@ -100,15 +107,24 @@ class RoomsNamespace(Namespace):
             return
 
         room_id = response["room_id"]
-        next_asker = Database.get_next_asker(room_id)
-        emit("asker_chosen", {"asker": next_asker}, json=True, broadcast=True)
-        genereated_question = Database.get_question(room_id)
-
-        if genereated_question is None:
-            emit("game_over", "", broadcast=True)
-        else:
-            emit("generated_question", {"question": genereated_question}, json=True, broadcast=True)
+        self.choose_new_question_and_asker(room_id)
 
     def _timeout_callback(self, asker, receiver, room_id):
         if asker == Database.get_current_asker(room_id):
             emit("time_limit_exceeded", {"asker": asker, "receiver": receiver}, json=True, broadcast=True)
+            self.choose_new_question_and_asker(room_id)
+
+    def choose_new_question_and_asker(self, room_id, asker=None):
+        if asker is None:
+            next_asker = Database.get_next_asker(room_id)
+        else:
+            next_asker = asker
+
+        emit("asker_chosen", {"asker": next_asker}, json=True, broadcast=True)
+        generated_question = Database.get_question(room_id)
+
+        if generated_question is None:
+            emit("game_over", "", broadcast=True)
+        else:
+            potential_receivers = Database.get_potential_receivers(room_id)
+            emit("generated_question", {"question": generated_question, "potential_receivers": potential_receivers}, json=True, room=Database.get_session_id(room_id, next_asker))
