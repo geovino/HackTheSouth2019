@@ -128,10 +128,10 @@
           receiver.onAskerChosen(state.name, (asker) => {
               if (state.name === asker) {
                   state.asker.asker = state.name;
-                  router.navigateTo('/asking_question');
+                  router.navigateTo('/' + roomid + '/choose_receiver');
               } else {
                   state.asker.asker = asker;
-                  router.navigateTo('/see_asker');
+                  router.navigateTo('/' + roomid + '/see_asker');
               }
           });
 
@@ -203,7 +203,7 @@
 
               //set the number of answered questions in template -- does not work
               $('#questionsDone').text(state.questions.length + "/" + state.questionCount);
-              console.log(state);
+              console.log(state); 
 
             }
 
@@ -254,10 +254,10 @@
           receiver.onAskerChosen(state.name, (asker) => {
             if (state.name === asker) {
                 state.asker.asker = state.name;
-                router.navigateTo('/asking_question');
+                router.navigateTo('/' + roomid + '/choose_receiver');
             } else {
                 state.asker.asker = asker;
-                router.navigateTo('/see_asker');
+                router.navigateTo('/' + roomid + '/see_asker');
             }
           });
 
@@ -275,7 +275,7 @@
           receiver.onReceiverChosen((receiver) => {
             if (state.name === receiver) {
               state.asker.receiver = state.name
-              router.navigateTo('/' + roomid + '/receiving_question');
+              router.navigateTo('/' + roomid + '/asking_question');
             } else if (state.name !== state.asker.asker) {
               state.asker.receiver = receiver;
               router.navigateTo('/' + roomid + '/spectating');
@@ -284,17 +284,17 @@
 
         });
 
-        router.add('{roomid}/spectating', () => {
+        router.add('{roomid}/spectating', (roomid) => {
           let html = spectating();
           el.html(html);
 
           receiver.onAskerChosen(state.name, (asker) => {
             if (state.name === asker) {
                 state.asker.asker = state.name;
-                router.navigateTo('/asking_question');
+                router.navigateTo('/' + roomid + '/choose_receiver');
             } else {
                 state.asker.asker = asker;
-                router.navigateTo('/see_asker');
+                router.navigateTo('/' + roomid + '/see_asker');
             }
           });
 
@@ -310,25 +310,28 @@
           router.navigateTo('/' + state.roomid + '/enter_questions');
         });
 
-        receiver.onPlayersCountChanged((playersLeft) => {
-            state.players = playersLeft;
-
-            $("#players-listing").empty();
-
-            playersLeft.forEach((player) => {
-              player.displayStatus = player.questions_count == 3 ? "ready" : "still thinking";
-              $("#players-listing").appendChild(playerDisplayTemplate({
+        receiver.onPlayersCountChanged((msg) => {
+          state.players = msg;
+          console.log(msg);
+          if ($("#player-listing") !== undefined) {
+            $("#player-listing").empty();
+            
+            msg.forEach((player) => {
+              console.log(player);
+              player.displayStatus = player.questions_count === 3 ? "ready" : "still thinking";
+              $("#player-listing").append(playerDisplayTemplate({
                 player_name: player.player_name,
-                displayStatus: player.display_status
+                displayStatus: player.displayStatus
               }));
             });
+          }
         });
 
         receiver.onAskerChosen(state.name, (asker) => {
           state.gameStarted = true;
             if (state.userId === asker) {
                 state.asker.asker = state.userId;
-                router.navigateTo('/' + state.roomid + '/asking_question');
+                router.navigateTo('/' + state.roomid + '/choose_receiver');
             } else {
                 state.asker.asker = asker;
                 router.navigateTo('/' + state.roomid + '/see_asker');

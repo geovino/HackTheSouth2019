@@ -52,7 +52,9 @@ receiver.onUserCreated = function(callback) {
 
 receiver.onPlayersCountChanged = function(callback) {
     return socket.on('players_count_changed', function(msg) {
+        console.log('------');
         console.log(msg);
+        console.log('------');
         return callback(msg);
     });
 };
