@@ -2,7 +2,8 @@
     'use strict';
 
     const state = {
-      player: null
+      name: null,
+      questions: []
     };
 
     window.addEventListener('load', () => {
@@ -79,6 +80,15 @@
         router.add('/enter_name', () => {
           let html = enterName();
           el.html(html);
+
+          $('.nameButton').on('click', function(event) {
+            let $realnameElem = $('.realname');
+            if ($realnameElem.length == 1 && $realnameElem[0].value) {
+              state.name = $realnameElem[0].value;
+            }
+            console.log(state);
+          });
+          
         });
 
         router.add('/choose_receiver', () => {
@@ -119,16 +129,12 @@
           el.html(html);
 
           let input = {
-            name: null,
+            name: state.player,
             questions: []
           };
 
           $('.readyButton').on('click', function() {
-            let $realnameElem = $('.realname');
             let $questionsElem = $('.userQuestion');
-            if ($realnameElem.length == 1 && $realnameElem[0].value) {
-              input.name = $realnameElem[0].value;
-            }
 
             $questionsElem.each(function(index) {
               input.questions[index] = $(this)[0].value;

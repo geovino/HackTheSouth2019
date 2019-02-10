@@ -17,7 +17,7 @@ templates["asking_question.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    </div>\n" +
    "    <div class=\"row justify-content-lg-center\">\n" +
    "        <div class=\"col-lg-auto\">\n" +
-   "            <h3 class=\"fancyheading\">Take this opportunity to learn more about <span class=\"highlight\">Player2</span></h3>\n" +
+   "            <h3 class=\"fancyheading\">Take this opportunity to learn more about <span class=\"highlight\">Player2</span>.</h3>\n" +
    "            <button type=\"button\" class=\"fancy\">I'm satisfied!</button>\n" +
    "        </div>\n" +
    "    </div>\n" +
@@ -48,7 +48,7 @@ templates["enter_name.handlebars"] = "<div class=\"container-fluid\">\n" +
    "            <input type=\"text\" class=\"question-input realname\" id=\"realname\" placeholder=\"Write your name here\">\n" +
    "        </div>\n" +
    "    </div>\n" +
-   "    <button type=\"button\" class=\"fancy\">This is me!</button>\n" +
+   "    <button type=\"button\" class=\"fancy nameButton\">This is me!</button>\n" +
    "</div>\n" +
    "";
 
