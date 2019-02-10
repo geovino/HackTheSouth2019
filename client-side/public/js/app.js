@@ -8,7 +8,8 @@
       gameStarted: false, // VERY IMPORTANT WHEN RECEIVING asker_chosen EVENT
       players: [],
       asker: {},
-      receiver: {}
+      receiver: {},
+      gameOver: false
     };
 
     window.addEventListener('load', () => {
@@ -96,16 +97,19 @@
               name: "Person3",
               displayStatus: "ready"
             },
-          ]
+          ];
 
           // receiver.onPlayersCountChanged((playersLeft) => {
           //   state.players = playersLeft;
           // });
 
-          receiver.onAskerChosen(state.name, (isAsker) => {
-              if (isAsker) {
+          receiver.onAskerChosen(state.name, (asker) => {
+            state.gameStarted = true;
+              if (state.name === asker) {
+                  state.asker.asker = state.name;
                   router.navigateTo('/asking_question');
               } else {
+                  state.asker.asker = asker;
                   router.navigateTo('/see_asker');
               }
           });
@@ -129,6 +133,35 @@
               state.asker.question = question;
               state.asker.potentialReceivers = potentialReceivers;
           });
+
+          // click button for satisfy or wait for time limit
+          sender.notifyResponse(roomid);
+
+          receiver.onTimeLimitExceeded(username, (role) => {
+            if (state.gameStarted) {
+                state.asker = {
+                  asker: null,
+                  receiver: null,
+                  question: null,
+                  potentialReceivers: []
+                }
+            }
+          });
+
+          receiver.onAskerChosen(state.name, (asker) => {
+              if (state.name === asker) {
+                  state.asker.asker = state.name;
+                  router.navigateTo('/asking_question');
+              } else {
+                  state.asker.asker = asker;
+                  router.navigateTo('/see_asker');
+              }
+          });
+
+          receiver.onGameOver(() => {
+            router.navigateTo('/game_over');
+          });
+          
         });
 
 
@@ -175,8 +208,10 @@
                 receiver = $elem[0].textContent;
               }
 
-              console.log(receiver);
+              sender.chooseReceiver(roomid, receiver);
+              state.asker.receiver = receiver;
               // At that time a receiver is known, so redirect
+              router.navigateTo('/' + roomid + '/asking_question');
               return receiver; // name of the receiver
             });
           });
@@ -243,18 +278,57 @@
         router.add('{roomid}/receiving_question', (roomid) => {
           let html = receivingQuestion();
           el.html(html);
+
+          receiver.onAskerChosen(state.name, (asker) => {
+            if (state.name === asker) {
+                state.asker.asker = state.name;
+                router.navigateTo('/asking_question');
+            } else {
+                state.asker.asker = asker;
+                router.navigateTo('/see_asker');
+            }
+          });
+
+          receiver.onGameOver(() => {
+            router.navigateTo('/game_over');
+          });
         });
 
-        router.add('{roomid}/see_asker', () => {
+        router.add('{roomid}/see_asker', (roomid) => {
           let html = seeAsker({
-            asker: 'Ivacheto'
+            asker: state.asker.asker
           });
           el.html(html);
+          
+          receiver.onReceiverChosen((receiver) => {
+            if (state.name === receiver) {
+              state.asker.receiver = state.name
+              router.navigateTo('/' + roomid + '/receiving_question');
+            } else if (state.name !== state.asker.asker) {
+              state.asker.receiver = receiver;
+              router.navigateTo('/' + roomid + '/spectating');
+            }
+          });
+          
         });
 
         router.add('{roomid}/spectating', () => {
           let html = spectating();
           el.html(html);
+
+          receiver.onAskerChosen(state.name, (asker) => {
+            if (state.name === asker) {
+                state.asker.asker = state.name;
+                router.navigateTo('/asking_question');
+            } else {
+                state.asker.asker = asker;
+                router.navigateTo('/see_asker');
+            }
+          });
+
+          receiver.onGameOver(() => {
+            router.navigateTo('/game_over');
+          });
         });
 
 
