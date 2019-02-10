@@ -10,6 +10,7 @@ from bluetato_server.database import Database
 rooms_blueprint = Blueprint('rooms', __name__, url_prefix='/rooms')
 CORS(rooms_blueprint)
 
+
 class RoomsAPI(MethodView):
 
     def post(self):
@@ -62,13 +63,13 @@ class RoomsNamespace(Namespace):
             emit("error", "Invalid input data when creating a user.")
             return
 
-        user_uuid, players_left = Database.create_player(user["room_id"], user["username"], request.sid)
+        user_uuid, players = Database.create_player(user["room_id"], user["username"], request.sid)
 
         if user_uuid is None:
             emit("error", "Invalid input data when creating a user.")
 
         emit("user_created", {"user_key": user_uuid}, json=True)
-        emit("players_count_changed", {"players_left": players_left}, json=True, broadcast=True)
+        emit("players_count_changed", players, json=True, broadcast=True)
 
     def on_create_question(self, data):
 

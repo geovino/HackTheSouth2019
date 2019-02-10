@@ -26,7 +26,6 @@ class Database:
             "players": {},
             "questions": [],
             "total_players": number_of_players,
-            "current_players": 0,
             "questions_required": 3,
             "current_asker": None,
             "last_receiver": None
@@ -48,7 +47,7 @@ class Database:
         if room_id not in DATABASE['rooms']:
             return -1
 
-        DATABASE['rooms'].pop(room_id);
+        DATABASE['rooms'].pop(room_id)
 
         return 0
 
@@ -57,7 +56,6 @@ class Database:
     # ------------------ PLAYER ----------------------
     @staticmethod
     def create_player(room_id, name, session_id):
-    #def create_player(room_id, name, session_id, player_id):
         if room_id not in DATABASE['rooms']:
             return None, -1
 
@@ -76,12 +74,9 @@ class Database:
         }
 
         DATABASE['rooms'][room_id]['players'][id_] = player_value
-        # DATABASE['rooms'][room_id]['players'][player_id] = player_value
 
-        DATABASE['rooms'][room_id]['current_players'] += 1
-
-        return id_, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
-        # return player_id, DATABASE['rooms'][room_id]['total_players'] - DATABASE['rooms'][room_id]['current_players']
+        players = [{"questions_count": player["questions_count"], "player_name": player["player_name"]} for player in DATABASE["rooms"][room_id]["players"].values()]
+        return id_, players
 
     @staticmethod
     def delete_player(room_id, name):
