@@ -3,7 +3,7 @@ var templates = {};
 templates["asking_question.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    <div class=\"row justify-content-lg-center\">\n" +
    "        <div class=\"col-lg-auto\">\n" +
-   "            <h2 class=\"fancyheading\" style=\"max-width: 500px; margin: 60px auto 0px auto;\">Ask <span class=\"highlight\">Player2</span>: \"<span class=\"highlight question\">Who was your first crush?</span>\"</h2>\n" +
+   "            <h2 class=\"fancyheading\" style=\"max-width: 500px; margin: 60px auto 0px auto;\">Ask <span class=\"highlight\">{{receiver}}</span>: \"<span class=\"highlight question\">{{thequestion}}</span>\"</h2>\n" +
    "        </div>\n" +
    "    </div>\n" +
    "    <div class=\"row justify-content-lg-center\">\n" +
@@ -17,8 +17,8 @@ templates["asking_question.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    </div>\n" +
    "    <div class=\"row justify-content-lg-center\">\n" +
    "        <div class=\"col-lg-auto\">\n" +
-   "            <h3 class=\"fancyheading\">Take this opportunity to learn more about <span class=\"highlight\">Player2</span>.</h3>\n" +
-   "            <button type=\"button\" class=\"fancy\">I'm satisfied!</button>\n" +
+   "            <h3 class=\"fancyheading\">Take this opportunity to learn more about <span class=\"highlight\">{{receiver}}</span>.</h3>\n" +
+   "            <button type=\"button\" class=\"fancy\" id=\"notify-satisfied\">I'm satisfied!</button>\n" +
    "        </div>\n" +
    "    </div>\n" +
    "\n" +
@@ -121,7 +121,7 @@ templates["room_created.handlebars"] = "<div class=\"container-fluid boatbg\">\n
 templates["see_asker.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    <div class=\"row justify-content-lg-center\">\n" +
    "        <div class=\"col-lg-auto\">\n" +
-   "            <h2 class=\"fancyheading\" style=\"max-width: 500px; margin: 60px auto 0px auto;\"><span class=\"highlight question\">Player1</span> is about to ask somebody a question. <i>Brace for a show!</i></h2>\n" +
+   "            <h2 class=\"fancyheading\" style=\"max-width: 500px; margin: 60px auto 0px auto;\"><span class=\"highlight question\">{{asker}}</span> is about to ask somebody a question. <i>Brace for a show!</i></h2>\n" +
    "        </div>\n" +
    "    </div>\n" +
    "</div>\n" +

@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row justify-content-lg-center">
         <div class="col-lg-auto">
-            <h2 class="fancyheading" style="max-width: 500px; margin: 60px auto 0px auto;">Ask <span class="highlight">Player2</span>: "<span class="highlight question">Who was your first crush?</span>"</h2>
+            <h2 class="fancyheading" style="max-width: 500px; margin: 60px auto 0px auto;">Ask <span class="highlight">{{receiver}}</span>: "<span class="highlight question">{{thequestion}}</span>"</h2>
         </div>
     </div>
     <div class="row justify-content-lg-center">
@@ -15,8 +15,8 @@
     </div>
     <div class="row justify-content-lg-center">
         <div class="col-lg-auto">
-            <h3 class="fancyheading">Take this opportunity to learn more about <span class="highlight">Player2</span>.</h3>
-            <button type="button" class="fancy">I'm satisfied!</button>
+            <h3 class="fancyheading">Take this opportunity to learn more about <span class="highlight">{{receiver}}</span>.</h3>
+            <button type="button" class="fancy" id="notify-satisfied">I'm satisfied!</button>
         </div>
     </div>
 

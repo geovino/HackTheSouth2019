@@ -1,6 +1,7 @@
 let receiver = {};
 
 receiver.onAskerChosen = function(username, callback) {
+    console.log(username);
     return socket.on('asker_chosen', function(msg) {
         return callback(msg.asker); // get asker template if true
     });

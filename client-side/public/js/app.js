@@ -62,7 +62,7 @@
                 type: "post",
                 contentType: "application/json",
                 url: "http://3.8.68.131:8080/rooms/",
-                data: JSON.stringify({ 'number_of_players': 2 }),
+                data: JSON.stringify({ 'number_of_players': 4 }),
                 dataType: "json",
                 crossDomain: true,
                 success: function(data) {
@@ -102,33 +102,37 @@
 
         router.add('{roomid}/asking_question', (roomid) => {
           let html = askingQuestion({
-            question: "Ask someone ~this"
+            thequestion: state.asker.question,
+            receiver: state.asker.receiver
           });
           el.html(html);
 
+          $("#notify-satisfied").on("click", function(event) {
+            sender.notifyResponse(roomid);          
+          });
+
           // click button for satisfy or wait for time limit
-          sender.notifyResponse(roomid);
 
-          receiver.onTimeLimitExceeded(username, (role) => {
-            if (state.gameStarted) {
-                state.asker = {
-                  asker: null,
-                  receiver: null,
-                  question: null,
-                  potentialReceivers: []
-                }
-            }
-          });
+          // receiver.onTimeLimitExceeded(username, (role) => {
+          //   if (state.gameStarted) {
+          //       state.asker = {
+          //         asker: null,
+          //         receiver: null,
+          //         question: null,
+          //         potentialReceivers: []
+          //       }
+          //   }
+          // });
 
-          receiver.onAskerChosen(state.name, (asker) => {
-              if (state.name === asker) {
-                  state.asker.asker = state.name;
-                  router.navigateTo('/' + roomid + '/choose_receiver');
-              } else {
-                  state.asker.asker = asker;
-                  router.navigateTo('/' + roomid + '/see_asker');
-              }
-          });
+          // receiver.onAskerChosen(state.name, (asker) => {
+          //     if (state.name === asker) {
+          //         state.asker.asker = state.name;
+          //         router.navigateTo('/' + roomid + '/choose_receiver');
+          //     } else {
+          //         state.asker.asker = asker;
+          //         router.navigateTo('/' + roomid + '/see_asker');
+          //     }
+          // });
 
           receiver.onGameOver(() => {
             router.navigateTo('/game_over');
@@ -158,21 +162,21 @@
             question: state.asker.question
           });
           el.html(html);
-          $('.userButton').each(function(roomid) {
-            $(this).on('click', function(event) {
-              let $elem = $(this);
-              let receiver = null;
-              if ($elem.length == 1 && $elem[0].textContent) {
-                receiver = $elem[0].textContent;
-              }
+          // $('.userButton').each(function(roomid) {
+          //   $(this).on('click', function(event) {
+          //     let $elem = $(this);
+          //     let receiver = null;
+          //     if ($elem.length == 1 && $elem[0].textContent) {
+          //       receiver = $elem[0].textContent;
+          //     }
 
-              sender.chooseReceiver(roomid, receiver);
-              state.asker.receiver = receiver;
-              // At that time a receiver is known, so redirect
-              router.navigateTo('/' + roomid + '/asking_question');
-              return receiver; // name of the receiver
-            });
-          });
+          //     sender.chooseReceiver(roomid, receiver);
+          //     state.asker.receiver = receiver;
+          //     // At that time a receiver is known, so redirect
+          //     router.navigateTo('/' + roomid + '/asking_question');
+          //     return receiver; // name of the receiver
+          //   });
+          // });
         });
 
         router.add('{roomid}/enter_questions', (roomid) => {
@@ -323,7 +327,9 @@
         });
 
         receiver.onReceiverChosen((receiver) => {
-          console.log(state);
+          console.log(JSON.stringify(state));
+          console.log(receiver);
+          console.log(state.asker.asker);
           if (state.name === receiver) {
             state.asker.receiver = state.name;
             console.log("am receiver");
