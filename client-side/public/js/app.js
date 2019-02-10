@@ -98,8 +98,8 @@
             let $realnameElem = $('.realname');
             if ($realnameElem.length == 1 && $realnameElem[0].value) {
               state.name = $realnameElem[0].value;
+              sender.createUser('ca9e11de-8648-4e22-a330-def94e4bad8f', state.name);
             }
-            console.log(state);
           });
 
         });
