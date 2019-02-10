@@ -8,6 +8,7 @@
       gameStarted: false, // VERY IMPORTANT WHEN RECEIVING asker_chosen EVENT
       players: [],
       asker: {},
+      roomid: null,
       receiver: {},
       gameOver: false
     };
@@ -166,14 +167,17 @@
         });
 
 
+        receiver.onUserCreated((userId, numQuestions) => {
+          state.questionCount = numQuestions;
+          router.navigateTo('/' + state.roomid + '/enter_questions');
+        });
+
+
         router.add('{roomid}/enter_name', (roomid) => {
           let html = enterName();
           el.html(html);
 
-          receiver.onUserCreated((userId, numQuestions) => {
-            state.questionCount = numQuestions;
-            router.navigateTo('/' + roomid + '/enter_questions');
-          });
+          state.roomid = roomid;
 
           $('.nameButton').on('click', function(event) {
             let $realnameElem = $('.realname');
