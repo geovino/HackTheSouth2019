@@ -61,5 +61,6 @@ print ("PL: ",Database.get_players(room_id))
 print ("Del player", Database.delete_player(room_id, 'A'))
 print(Database.get())
 
+print ("Room Ids: ", Database.get_room_ids())
 print("Del room", Database.delete_room(room_id))
 print(Database.get())
