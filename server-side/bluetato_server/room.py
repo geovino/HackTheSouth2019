@@ -2,12 +2,13 @@ from threading import Timer
 from json import loads
 from flask import Blueprint, request, jsonify
 from flask.views import MethodView
+from flask_cors import CORS
 from flask_socketio import Namespace, emit
 from bluetato_server.database import Database
 
 
 rooms_blueprint = Blueprint('rooms', __name__, url_prefix='/rooms')
-
+CORS(rooms_blueprint)
 
 class RoomsAPI(MethodView):
 
