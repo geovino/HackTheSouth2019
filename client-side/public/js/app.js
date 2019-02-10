@@ -162,15 +162,8 @@
           });
         });
 
-<<<<<<< HEAD
         router.add('/enter_questions', () => {
           let html = enterQuestion(state);
-=======
-        router.add('{roomid}/enter_questions', (roomid) => {
-          let html = enterQuestion({
-            questions: [1, 2, 3]
-          });
->>>>>>> 6c26f08facd75956522a5d32a5bf92b7a71963de
           el.html(html);
 
           $('.questionButton').on('click', function(event) {
