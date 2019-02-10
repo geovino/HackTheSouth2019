@@ -67,35 +67,17 @@ templates["enter_questions.handlebars"] = "<div class=\"container-fluid\">\n" +
    "</div>\n" +
    "";
 
-templates["lobby.handlebars"] = "<header>\n" +
-   "    <div class=\"header-content\">\n" +
-   "        <div class=\"header-content-inner\">\n" +
-   "            <h1 id=\"homeHeading\">Bluetato</h1>\n" +
-   "            <hr>\n" +
-   "            <p>Create a room and send a link to your friends</p>\n" +
-   "            <a href=\"/\" class=\"btn btn-primary btn-xl page-scroll\" style=\"margin-top: 5px\">Create Room</a>\n" +
-   "            <a href=\"/\" class=\"btn btn-primary btn-xl page-scroll\" style=\"margin-top: 5px\">Join existing Room</a>\n" +
+templates["lobby.handlebars"] = "<div class=\"container-fluid boatbg\">\n" +
+   "    <div class=\"row justify-content-lg-center\">\n" +
+   "        <div class=\"col-lg-auto\" style=\"text-align: center;\">\n" +
+   "            <h1 class=\"display-title\">Bluetato</h1><br>\n" +
+   "            <h2 class=\"display-subtitle\" style=\"margin-bottom: 0px;\">We were planning to use bluetooth.</h2><br>\n" +
+   "            <h2 class=\"display-subtitle\" style=\"margin-top: 0px;\">We compromised and we made the website blue!</h2>\n" +
    "        </div>\n" +
    "    </div>\n" +
-   "</header>\n" +
    "\n" +
-   "<section id=\"contact\">\n" +
-   "    <div class=\"container\">\n" +
-   "        <div class=\"row\">\n" +
-   "            <div class=\"col-lg-8 col-lg-offset-2 text-center\">\n" +
-   "                <h2 class=\"section-heading\">Hack the South 2019</h2>\n" +
-   "                <hr class=\"primary\">\n" +
-   "                <p>project made for Saturday/Sunday</p>\n" +
-   "            </div>\n" +
-   "        <div class=\"row\">\n" +
-   "            <div class=\"col-lg-8 col-lg-offset-2 text-center\">\n" +
-   "                <i class=\"fa fa-github fa-4x\"></i>\n" +
-   "                <p><a href=\"mailto:your-email@your-domain.com\">https://github.com/HackTheSouth2019</a></p>\n" +
-   "            </div>\n" +
-   "        </div>\n" +
-   "    </div>\n" +
+   "    <button id=\"create-room\" type=\"button\" class=\"fancy\">Greate room</button>\n" +
    "</div>\n" +
-   "</section>\n" +
    "";
 
 templates["receiving_question.handlebars"] = "<div class=\"container-fluid\">\n" +
@@ -106,6 +88,19 @@ templates["receiving_question.handlebars"] = "<div class=\"container-fluid\">\n"
    "            <img class=\"frost\" src=\"img/icey.png\"/>\n" +
    "        </div>\n" +
    "    </div>\n" +
+   "</div>\n" +
+   "";
+
+templates["room_created.handlebars"] = "<div class=\"container-fluid boatbg\">\n" +
+   "    <div class=\"row justify-content-lg-center\">\n" +
+   "        <div class=\"col-lg-auto\" style=\"text-align: center;\">\n" +
+   "            <h1 class=\"fancyheading\">Room succesfully created</h1>\n" +
+   "            <h2 class=\"display-subtitle\" style=\"margin-bottom: 0px;\">Share the following link with your friends:</h2><br>\n" +
+   "            <h2 class=\"display-subtitle\" style=\"margin-top: 0px; text-decoration: underline;\"><a href=\"https://www.w3schools.com/css/css_form.asp\">https://www.w3schools.com/css/css_form.asp</a></h2>\n" +
+   "        </div>\n" +
+   "    </div>\n" +
+   "\n" +
+   "    <button id=\"create-room\" type=\"button\" class=\"fancy\">Proceed to room</button>\n" +
    "</div>\n" +
    "";
 

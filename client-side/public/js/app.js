@@ -28,6 +28,7 @@
         const spectating = Handlebars.compile(templates['spectating.handlebars']);
         const waitingRoom = Handlebars.compile(templates['waiting_room.handlebars']);
         const enterName = Handlebars.compile(templates['enter_name.handlebars']);
+        const roomCreated = Handlebars.compile(templates['room_created.handlebars']);
         const lobby = Handlebars.compile(templates['lobby.handlebars']);
 
         const html = lobby();
@@ -48,6 +49,10 @@
         router.add('/', () => {
           let html = lobby();
           el.html(html);
+
+          $("#create-room").on('click', function(event) {
+            router.navigateTo("/room_created");
+          });
         });
 
         router.add('/waiting_room', () => {
@@ -66,6 +71,14 @@
                 displayStatus: "ready"
               },
             ]
+          });
+          el.html(html);
+        });
+
+
+        router.add('/room_created', () => {
+          let html = roomCreated({
+            theurl: "https://www.w3schools.com/css/css_form.asp"
           });
           el.html(html);
         });
@@ -93,7 +106,7 @@
               sender.createUser('ca9e11de-8648-4e22-a330-def94e4bad8f', state.name);
             }
           });
-          
+
         });
 
         router.add('/choose_receiver', () => {
