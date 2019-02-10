@@ -1,47 +1,12 @@
-<div class="container">
- <div class="row">
-   <div class="col-sm">
-     One of three columns
-   </div>
-   <div class="col-sm">
-     One of three columns
-   </div>
-   <div class="col-sm">
-     One of three columns
-   </div>
- </div>
-</div>
 <div class="container-fluid">
-    <form>
-        <div class="row">
-            <div class="col-2">
-            </div>
-            <div class="col-8">
-                <div class="form-group">
-                    <label for="realname">Name</label>
-                    <input type="text" class="form-control realname" id="realname" placeholder="Write your name here">
-                </div>
-            </div>
+    <div class="row justify-content-lg-center">
+        <div class="col-lg-auto">
+            <h1 class="fancyheading">What questions should the others answer?</h1>
+            <h3 class="fancyheading">Interesting questions have interesting answers.</h3>
 
-            <div class="col-2">
-            </div>
+            <textarea class="question-input" placeholder="Write your a question here!"></textarea>
         </div>
-        <div class="row">
-            <div class="col-2">
-            </div>
-            <div class="col-8">
-                {{#each questions}}
-                    <div class="form-group">
-                        <label for="userQuestion">Question {{this}}</label>
-                        <textarea class="form-control userQuestion" placeholder="Write your first question here"></textarea>
-                    </div>
-                {{/each}}
-            </div>
-            <div class="col-2">
-            </div>
-        </div>
-        <div class="row">
-            <button type="button" class="btn btn-primary btn-sm readyButton">I'm ready</button>
-        </div>
-    </form>
+    </div>
+    <div class="medium-info"><span class="highlight">2/3</span> questions sent.</div>
+    <button type="button" class="fancy">Send question</button>
 </div>

@@ -1,76 +1,52 @@
 var templates = {};
 
-templates["asking_question.handlebars"] = "\n" +
-   "<div class=\"jumbotron\">\n" +
-   "  <h1 class=\"display-4\">{{asker}}</h1>\n" +
-   "  <p class=\"lead\">is asking a question</p>\n" +
-   "</div>\n" +
-   "\n" +
-   "\n" +
-   "<div>\n" +
-   "    <div class=\"col-2\"></div>\n" +
-   "        <div class=\"col-8\">\n" +
-   "            <i class= \"fa fa-question-circle fa-10x\" style=\"font-size: 20em;\"></i>\n" +
+templates["asking_question.handlebars"] = "<div class=\"container-fluid\">\n" +
+   "    <div class=\"row justify-content-lg-center\">\n" +
+   "        <div class=\"col-lg-auto\">\n" +
+   "            <h2 class=\"fancyheading\" style=\"max-width: 500px; margin: 60px auto 0px auto;\">Ask <span class=\"highlight\">Player2</span>: \"<span class=\"highlight question\">Who was your first crush?</span>\"</h2>\n" +
    "        </div>\n" +
-   "    <div class=\"col-2\"></div>\n" +
+   "    </div>\n" +
    "</div>\n" +
-   "\n" +
-   "\n" +
    "";
 
-templates["choose_receiver.handlebars"] = "<h1>Choose Receiver</h1>\n" +
-   "<div class=\"list-group\">\n" +
-   "    {{#each people}}\n" +
-   "        <button type=\"button\" class=\"list-group-item list-group-item-action userButton\">{{this.name}}</button>\n" +
-   "    {{/each}}\n" +
-   "</div>";
-
-templates["enter_questions.handlebars"] = "<div class=\"container\">\n" +
-   " <div class=\"row\">\n" +
-   "   <div class=\"col-sm\">\n" +
-   "     One of three columns\n" +
-   "   </div>\n" +
-   "   <div class=\"col-sm\">\n" +
-   "     One of three columns\n" +
-   "   </div>\n" +
-   "   <div class=\"col-sm\">\n" +
-   "     One of three columns\n" +
-   "   </div>\n" +
-   " </div>\n" +
+templates["choose_receiver.handlebars"] = "<div class=\"container-fluid\">\n" +
+   "    <div class=\"row justify-content-lg-center\">\n" +
+   "        <div class=\"col-lg-auto\">\n" +
+   "      <h2 class=\"fancyheading\">Whom will you ask <span class=\"highlight question\">\"Who was your first crush?\"</span>?</h2>\n" +
+   "      <ul class=\"player-list\">\n" +
+   "          {{#each people}}\n" +
+   "              <li class=\"player-button\">{{this.name}}</li>\n" +
+   "          {{/each}}\n" +
+   "      </ul>\n" +
+   "    </div>\n" +
+   "  </div>\n" +
    "</div>\n" +
-   "<div class=\"container-fluid\">\n" +
-   "    <form>\n" +
-   "        <div class=\"row\">\n" +
-   "            <div class=\"col-2\">\n" +
-   "            </div>\n" +
-   "            <div class=\"col-8\">\n" +
-   "                <div class=\"form-group\">\n" +
-   "                    <label for=\"realname\">Name</label>\n" +
-   "                    <input type=\"text\" class=\"form-control realname\" id=\"realname\" placeholder=\"Write your name here\">\n" +
-   "                </div>\n" +
-   "            </div>\n" +
+   "";
+
+templates["enter_name.handlebars"] = "<div class=\"container-fluid\">\n" +
+   "    <div class=\"row justify-content-lg-center\">\n" +
+   "        <div class=\"col-lg-auto\">\n" +
+   "            <h1 class=\"fancyheading\">What is your name?</h1>\n" +
+   "            <h3 class=\"fancyheading\">The first step to knowing someone is knowing their name.</h3>\n" +
    "\n" +
-   "            <div class=\"col-2\">\n" +
-   "            </div>\n" +
+   "            <input type=\"text\" class=\"question-input realname\" id=\"realname\" placeholder=\"Write your name here\">\n" +
    "        </div>\n" +
-   "        <div class=\"row\">\n" +
-   "            <div class=\"col-2\">\n" +
-   "            </div>\n" +
-   "            <div class=\"col-8\">\n" +
-   "                {{#each questions}}\n" +
-   "                    <div class=\"form-group\">\n" +
-   "                        <label for=\"userQuestion\">Question {{this}}</label>\n" +
-   "                        <textarea class=\"form-control userQuestion\" placeholder=\"Write your first question here\"></textarea>\n" +
-   "                    </div>\n" +
-   "                {{/each}}\n" +
-   "            </div>\n" +
-   "            <div class=\"col-2\">\n" +
-   "            </div>\n" +
+   "    </div>\n" +
+   "    <button type=\"button\" class=\"fancy\">This is me!</button>\n" +
+   "</div>\n" +
+   "";
+
+templates["enter_questions.handlebars"] = "<div class=\"container-fluid\">\n" +
+   "    <div class=\"row justify-content-lg-center\">\n" +
+   "        <div class=\"col-lg-auto\">\n" +
+   "            <h1 class=\"fancyheading\">What questions should the others answer?</h1>\n" +
+   "            <h3 class=\"fancyheading\">Interesting questions have interesting answers.</h3>\n" +
+   "\n" +
+   "            <textarea class=\"question-input\" placeholder=\"Write your a question here!\"></textarea>\n" +
    "        </div>\n" +
-   "        <div class=\"row\">\n" +
-   "            <button type=\"button\" class=\"btn btn-primary btn-sm readyButton\">I'm ready</button>\n" +
-   "        </div>\n" +
-   "    </form>\n" +
+   "    </div>\n" +
+   "    <div class=\"medium-info\"><span class=\"highlight\">2/3</span> questions sent.</div>\n" +
+   "    <button type=\"button\" class=\"fancy\">Send question</button>\n" +
    "</div>\n" +
    "";
 
@@ -105,17 +81,35 @@ templates["lobby.handlebars"] = "<header>\n" +
    "</section>\n" +
    "";
 
-templates["receiving_question.handlebars"] = "<h1>Receiving Question</h1>\n" +
+templates["receiving_question.handlebars"] = "<div class=\"container-fluid\">\n" +
+   "    <div class=\"row justify-content-lg-center\">\n" +
+   "        <div class=\"col-lg-auto\">\n" +
+   "            <h2 class=\"fancyheading\" style=\"max-width: 500px; margin: 60px auto 0px auto;\">It's time for some indiscretion. <br>The ice is breaking. <br><span class=\"highlight question\">Answer the question.</span><br> The timer is shaking.</h2>\n" +
+   "\n" +
+   "            <img class=\"frost\" src=\"img/icey.png\"/>\n" +
+   "        </div>\n" +
+   "    </div>\n" +
+   "</div>\n" +
    "";
 
-templates["see_asker.handlebars"] = "<h1>Asker is: {{asker}}</h1>\n" +
-   "<h2>Please wait for his question...</h2>\n" +
+templates["see_asker.handlebars"] = "<div class=\"container-fluid\">\n" +
+   "    <div class=\"row justify-content-lg-center\">\n" +
+   "        <div class=\"col-lg-auto\">\n" +
+   "            <h2 class=\"fancyheading\" style=\"max-width: 500px; margin: 60px auto 0px auto;\"><span class=\"highlight question\">Player1</span> is about to ask somebody a question. <i>Brace for a show!</i></h2>\n" +
+   "        </div>\n" +
+   "    </div>\n" +
+   "</div>\n" +
    "";
 
-templates["spectating.handlebars"] = "<h1>Spectating</h1>\n" +
+templates["spectating.handlebars"] = "<div class=\"container-fluid\">\n" +
+   "    <div class=\"row justify-content-lg-center\">\n" +
+   "        <div class=\"col-lg-auto\">\n" +
+   "            <h2 class=\"fancyheading\" style=\"max-width: 500px; margin: 60px auto 0px auto;\"><span class=\"highlight\">Player1</span> is asking <span class=\"highlight\">Player2</span> a question.\n" +
+   "        </div>\n" +
+   "    </div>\n" +
+   "</div>\n" +
    "";
 
-<<<<<<< HEAD
 templates["waiting_room.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    <div class=\"row justify-content-lg-center\">\n" +
    "        <div class=\"col-lg-auto\">\n" +
@@ -134,110 +128,4 @@ templates["waiting_room.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    </div>\n" +
    "</div>\n" +
    "\n" +
-   "\n" +
-   "\n" +
-   "{{!-- <div class=\"limiter\">\n" +
-   "    <div>\n" +
-   "        <div class=\"container-table100\">\n" +
-   "            <div class=\"wrap-table100\">\n" +
-   "                    <div class=\"table\">\n" +
-   "\n" +
-   "                        <div class=\"row header\">\n" +
-   "                            <div class=\"cell\">\n" +
-   "                                Full Name\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\">\n" +
-   "                                Questions\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Vincent Williamson\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Joseph Smith\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Not Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Justin Black\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Sean Guzman\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Keith Carter\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Austin Medina\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Vincent Williamson\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Questions\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-   "\n" +
-   "                        <div class=\"row\">\n" +
-   "                            <div class=\"cell\" data-title=\"Full Name\">\n" +
-   "                                Joseph Smith\n" +
-   "                            </div>\n" +
-   "                            <div class=\"cell\" data-title=\"Location\">\n" +
-   "                                Ready\n" +
-   "                            </div>\n" +
-   "                        </div>\n" +
-=======
-templates["waiting_room.handlebars"] = "<h1>Waiting room</h1>\n" +
-   "\n" +
-   "<table class=\"list-group\">\n" +
-   "    <tr class=\"list-group-item list-group-item-primary\">\n" +
-   "        <th colspan=\"2\"><label>User Name</label></th>\n" +
-   "        <th colspan=\"2\"><label>User Status</label></th>\n" +
-   "    </tr>\n" +
-   "    {{#each users}}\n" +
-   "        <tr class=\"list-group-item list-group-item-light\">\n" +
-   "            <td colspan=\"2\"><label>{{this.name}}</label></td>\n" +
-   "            <td colspan=\"2\"><label>{{this.status}}</label></td>\n" +
-   "        </tr>\n" +
-   "    {{/each}}\n" +
-   "</table>\n" +
-   "\n" +
->>>>>>> cede7ea16e9dc8ce51cdc2c9671a7d9e11db1556
-   "\n" +
-   " ";
+   "";
