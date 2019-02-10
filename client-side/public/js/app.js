@@ -54,7 +54,8 @@
           });
         });
 
-        router.add('/waiting_room', () => {
+        router.add('/{roomid}/waiting_room', (roomid) => {
+          console.log(roomid);
           let html = waitingRoom({
             users: [
               {
@@ -75,14 +76,14 @@
         });
 
 
-        router.add('/room_created', () => {
+        router.add('/{roomid}/room_created', () => {
           let html = roomCreated({
             theurl: "https://www.w3schools.com/css/css_form.asp"
           });
           el.html(html);
         });
 
-        router.add('/asking_question', () => {
+        router.add('/{roomid}/asking_question', () => {
           let html = askingQuestion({
             question: "Ask someone ~this"
           });
@@ -90,7 +91,7 @@
         });
 
 
-        router.add('/enter_name', () => {
+        router.add('/{roomid}/enter_name', () => {
           let html = enterName();
           el.html(html);
 
@@ -104,7 +105,7 @@
 
         });
 
-        router.add('/choose_receiver', () => {
+        router.add('/{roomid}/choose_receiver', () => {
           // Get names
           let html = chooseReceiver({
             people: [
@@ -135,7 +136,7 @@
           });
         });
 
-        router.add('/enter_questions', () => {
+        router.add('/{roomid}/enter_questions', () => {
           let html = enterQuestion({
             questions: [1, 2, 3]
           });
@@ -163,19 +164,19 @@
           });
         });
 
-        router.add('/receiving_question', () => {
+        router.add('/{roomid}/receiving_question', () => {
           let html = receivingQuestion();
           el.html(html);
         });
 
-        router.add('/see_asker', () => {
+        router.add('/{roomid}/see_asker', () => {
           let html = seeAsker({
             asker: 'Ivacheto'
           });
           el.html(html);
         });
 
-        router.add('/spectating', () => {
+        router.add('/{roomid}/spectating', () => {
           let html = spectating();
           el.html(html);
         });

@@ -11,7 +11,7 @@ app.use(express.static('public'));
 app.use('/scripts', express.static(`${__dirname}/node_modules/`));
 app.use('/vendor', express.static(`${__dirname}/public/vendor/`));
 
-app.use((req, res) => res.sendFile(`${__dirname}/public/index.html`));
+app.use((req, res) => res.sendFile(`${__dirname}/public/game.html`));
 
 // Listen for HTTP requests on port 3000
 app.listen(port, () => {
