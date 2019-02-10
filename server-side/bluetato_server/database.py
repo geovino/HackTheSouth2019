@@ -193,7 +193,7 @@ class Database:
         last_receiver = DATABASE["rooms"][room_id]["last_receiver"]
         asker = Database.get_current_asker(room_id)
 
-        if last_receiver in players:
+        if last_receiver is not None and last_receiver in players:
             players.remove(last_receiver)
         else:
             return None, "SHIT - serious logic error"
