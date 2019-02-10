@@ -32,7 +32,7 @@ class Database:
         }
 
         DATABASE['rooms'][id_] = room_value
-
+        print("room created")
         return id_
 
     @staticmethod
@@ -57,9 +57,11 @@ class Database:
     @staticmethod
     def create_player(room_id, name, session_id):
         if room_id not in DATABASE['rooms']:
+            print("room id not in database ", room_id)
             return None, -1
 
         if len(DATABASE['rooms'][room_id]['players']) >= DATABASE['rooms'][room_id]['total_players']:
+            print("more players than required")
             return None, -1
 
         for pl in DATABASE['rooms'][room_id]['players']:
@@ -113,8 +115,10 @@ class Database:
     def player_enters_question(room_id, player_id, question):
         player_id = str(player_id)
         if room_id not in DATABASE['rooms']:
+            print("room id is not recognised", room_id)
             return -1
-        if str(player_id) not in DATABASE['rooms'][room_id]['players']:
+        if player_id not in DATABASE['rooms'][room_id]['players']:
+            print("player_id not found ", player_id)
             return -1
         if DATABASE['rooms'][room_id]['players'][player_id]['questions_count'] >= DATABASE['rooms'][room_id]['questions_required']:
             return -1
@@ -198,11 +202,13 @@ class Database:
         elif last_receiver in players:
             players.remove(last_receiver)
         else:
+            print("RECEIVER shit")
             return None, "SHIT - serious logic error"
 
         if asker in players:
             players.remove(asker)
         else:
+            print("ASKER shit")
             return None, "SHIT - serious logic error"
 
         nicknames = []
@@ -216,6 +222,8 @@ class Database:
     # ------------------ QUESTIONS ----------------------
     @staticmethod
     def questions_ready(room_id):
+        print("questions ready ?")
+        print(room_id) 
         return len(DATABASE["rooms"][room_id]["questions"]) == DATABASE["rooms"][room_id]["total_players"] * DATABASE["rooms"][room_id]["questions_required"]
 
     @staticmethod

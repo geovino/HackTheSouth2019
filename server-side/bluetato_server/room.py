@@ -5,7 +5,7 @@ from flask.views import MethodView
 from flask_cors import CORS
 from flask_socketio import Namespace, emit
 from bluetato_server.database import Database
-
+from time import sleep
 
 rooms_blueprint = Blueprint('rooms', __name__, url_prefix='/rooms')
 CORS(rooms_blueprint)
@@ -19,7 +19,7 @@ class RoomsAPI(MethodView):
             return jsonify({'title': 'Bad request', 'msg': 'Invalid input data for room creation.'}), 400
 
         room_identifier = Database.create_room(room["number_of_players"])
-
+        print("new room id: ", room_identifier)
         return jsonify({"identifier": room_identifier}), 200
 
     def get(self):
@@ -29,7 +29,7 @@ class RoomsAPI(MethodView):
 
         rooms = Database.get_rooms_ids()
 
-        return jsonify({"rooms_ids": rooms}), 201
+        return jsonify(Database.get()), 201
 
 
 rooms_blueprint.add_url_rule('/', view_func=RoomsAPI.as_view('api_rooms'))
@@ -59,32 +59,38 @@ class RoomsNamespace(Namespace):
             return
 
         user_uuid, players = Database.create_player(user["room_id"], user["username"], request.sid)
+        print("user created")
 
         if user_uuid is None:
             emit("error", "Invalid input data when creating a user.")
 
         emit("user_created", {"user_key": user_uuid}, json=True)
         print(players)
+        sleep(1)
+        print("SLEEP ended")
         emit("players_count_changed", players, json=True, broadcast=True)
 
     def on_create_question(self, data):
-
+        print(data)
         try:
             question = loads(data)
         except ValueError:
             emit("error", "Invalid input data when creating a question.")
             return
-
+        print("parsed")
         room_id = question["room_id"]
 
         questions_left = Database.player_enters_question(room_id, question["user_id"], question["question"])
+        print(questions_left)
         if questions_left == -1:
             emit("error", "Player has already submitted enough questions.")
-
+            return
+        print("Question created")
         emit("question_created", {"questions_left": questions_left}, json=True)
 
         if Database.questions_ready(room_id):
             asker = Database.set_askers_order(room_id)
+            print("Asker is ", asker)
             self.choose_new_question_and_asker(room_id, asker=asker)
         else:
             players = Database.get_updated_players(room_id)
@@ -134,9 +140,10 @@ class RoomsNamespace(Namespace):
 
         emit("asker_chosen", {"asker": next_asker}, json=True, broadcast=True)
         generated_question = Database.get_question(room_id)
-
+        print(generated_question, next_asker)
         if generated_question is None:
             emit("game_over", "", broadcast=True)
         else:
             potential_receivers = Database.get_potential_receivers(room_id)
+            print(potential_receivers)
             emit("generated_question", {"question": generated_question, "potential_receivers": potential_receivers}, json=True, room=Database.get_session_id(room_id, next_asker))
