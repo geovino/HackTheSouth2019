@@ -75,7 +75,21 @@ templates["lobby.handlebars"] = "<div class=\"container-fluid boatbg\">\n" +
    "        </div>\n" +
    "    </div>\n" +
    "\n" +
-   "    <button id=\"create-room\" type=\"button\" class=\"fancy\">Greate room</button>\n" +
+   "    <button id=\"create-room\" type=\"button\" class=\"fancy\">Create room</button>\n" +
+   "\n" +
+   "    <div class=\"row justify-content-lg-center hidden\" id=\"link-present\">\n" +
+   "        <div class=\"col-lg-auto\" style=\"text-align: center;\">\n" +
+   "            <h2 class=\"display-subtitle\" style=\"margin-bottom: 0px;\">Room succesfully created. Hers your code:</h2><br>\n" +
+   "            <h2 class=\"display-subtitle\" style=\"margin-top: 0px;\"><a href=\"#\" id=\"link-display\">Your code</a></h2>\n" +
+   "        </div>\n" +
+   "    </div>\n" +
+   "\n" +
+   "    <div class=\"row justify-content-lg-center\">\n" +
+   "        <div class=\"col-lg-auto\" style=\"text-align: center;\">\n" +
+   "            <input id=\"code-input\" type=\"text\" class=\"question-input realname\" placeholder=\"Room code\" style=\"margin-bottom: 4px;\">\n" +
+   "            <button id=\"join-room\" type=\"button\" class=\"fancy\" style=\"margin-top: 4px;\">Join room</button>\n" +
+   "        </div>\n" +
+   "    </div>\n" +
    "</div>\n" +
    "";
 
