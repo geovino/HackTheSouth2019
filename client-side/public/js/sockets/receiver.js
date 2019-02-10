@@ -46,7 +46,7 @@ receiver.onTimeLimitExceeded = function(username, callback) {
 
 receiver.onUserCreated = function(callback) {
     return socket.on('user_created', function(msg) {
-        return callback(msg.user_key);
+        return callback(msg.user_key, 3);
     });
 };
 

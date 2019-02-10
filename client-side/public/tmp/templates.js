@@ -61,7 +61,8 @@ templates["enter_questions.handlebars"] = "<div class=\"container-fluid\">\n" +
    "            <textarea class=\"question-input\" placeholder=\"Write your a question here!\" id=\"questionArea\"></textarea>\n" +
    "        </div>\n" +
    "    </div>\n" +
-   "    <div class=\"medium-info\"><span class=\"highlight\">2/3</span> questions sent.</div>\n" +
+   "    <div class=\"medium-info\"><span class=\"highlight\" id=\"questionsDone\">{{this.questions.length}}/{{this.questionCount}}</span> \n" +
+   "     questions sent.</div>\n" +
    "    <button type=\"button\" class=\"fancy questionButton\">Send question</button>\n" +
    "</div>\n" +
    "";

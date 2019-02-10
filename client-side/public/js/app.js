@@ -4,7 +4,7 @@
     const state = {
       name: null,
       questions: [],
-      questionCount: 0
+      questionCount: 0,
     };
 
     window.addEventListener('load', () => {
@@ -81,7 +81,8 @@
           let html = enterName();
           el.html(html);
 
-          receiver.onUserCreated(() => {
+          receiver.onUserCreated((userId, numQuestions) => {
+            state.questionCount = numQuestions;
             router.navigateTo('/enter_questions');
           });
 
@@ -127,25 +128,27 @@
         });
 
         router.add('/enter_questions', () => {
-
-
-          let html = enterQuestion();
+          let html = enterQuestion(state);
           el.html(html);
 
           $('.questionButton').on('click', function(event) {
+
             let $questionText = $('#questionArea').val();
             if ($questionText.length !== 0) {
               state.questions.push($questionText);
-              state.questionCount +=1;
 
               //set the number of answered questions in template -- does not work
-              $('#questionsDone').text(state.questionCount + "/3");
-              console.log("something pls", $('#questionsDone').text());
-              if (state.questionCount == 3) {
-                state.questionCount = 0;
-                // player is done => set him as ready here
-              }
+              $('#questionsDone').text(state.questions.length + "/" + state.questionCount);
+              console.log(state);
+              
             }
+
+            if (state.questionCount - state.questions.length === 0) {
+              router.navigateTo('/waiting_room');
+            }
+
+            sender.createQuestion('ca9e11de-8648-4e22-a330-def94e4bad8f', state.name, $questionText);
+
             //clear the text area
             $('#questionArea').val('');
           });
