@@ -235,6 +235,10 @@ class Database:
     def get():
         return DATABASE
 
+
+    def get_rooms_ids():
+        return list(DATABASE.keys())
+
     # ------------------ TESTING END ----------------------
 
     # @staticmethod
