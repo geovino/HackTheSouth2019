@@ -47,7 +47,7 @@ class Database:
         if room_id not in DATABASE['rooms']:
             return -1
 
-        del DATABASE['rooms'][room_id];
+        DATABASE['rooms'].pop(room_id)
 
         return 0
 
