@@ -10,7 +10,7 @@
       asker: {},
       roomid: null,
       receiver: {},
-      gameOver: false
+      gameOver: false,
     };
 
     window.addEventListener('load', () => {
@@ -86,24 +86,9 @@
           let html = waitingRoom(state.players);
           el.html(html);
 
-          state.players = [
-            {
-              name: "Person1",
-              displayStatus: "ready"
-            },
-            {
-              name: "Person2",
-              displayStatus: "still thinking"
-            },
-            {
-              name: "Person3",
-              displayStatus: "ready"
-            },
-          ];
-
-          // receiver.onPlayersCountChanged((playersLeft) => {
-          //   state.players = playersLeft;
-          // });
+          receiver.onPlayersCountChanged((playersLeft) => {
+            state.players = playersLeft;
+          });
 
           receiver.onAskerChosen(state.name, (asker) => {
             state.gameStarted = true;
@@ -163,7 +148,6 @@
           receiver.onGameOver(() => {
             router.navigateTo('/game_over');
           });
-
         });
 
 
@@ -178,6 +162,10 @@
           el.html(html);
 
           state.roomid = roomid;
+
+          receiver.onPlayersCountChanged((playersLeft) => {
+            state.players = playersLeft;
+          });
 
           $('.nameButton').on('click', function(event) {
             let $realnameElem = $('.realname');
