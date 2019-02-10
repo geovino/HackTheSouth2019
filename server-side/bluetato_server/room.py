@@ -64,6 +64,7 @@ class RoomsNamespace(Namespace):
             emit("error", "Invalid input data when creating a user.")
 
         emit("user_created", {"user_key": user_uuid}, json=True)
+        print(players)
         emit("players_count_changed", players, json=True, broadcast=True)
 
     def on_create_question(self, data):
