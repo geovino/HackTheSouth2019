@@ -42,10 +42,10 @@
  }
  .long-hand {
     height: 80px;
-    -webkit-animation: rotation 10s linear;
-    -moz-animation: rotation 10s linear;
-    -o-animation: rotation 10s linear;
-    animation: rotation 10s linear
+    -webkit-animation: rotation 30s linear;
+    -moz-animation: rotation 30s linear;
+    -o-animation: rotation 30s linear;
+    animation: rotation 30s linear
  }
 
  @-webkit-keyframes rotation {
