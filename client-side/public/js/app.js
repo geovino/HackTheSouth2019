@@ -108,7 +108,7 @@
           el.html(html);
 
           $("#notify-satisfied").on("click", function(event) {
-            sender.notifyResponse(roomid);          
+            sender.notifyResponse(roomid);
           });
 
           // click button for satisfy or wait for time limit
@@ -265,7 +265,10 @@
         });
 
         router.add('{roomid}/spectating', (roomid) => {
-          let html = spectating();
+          let html = spectating({
+            asker: state.asker.asker,
+            receiver: state.asker.receiver,
+          });
           el.html(html);
 
           receiver.onGameOver(() => {
@@ -284,7 +287,7 @@
             $("#receiver-choice-list").append(choiceButton({player_name: receiver}));
           });
 
-          
+
           $(".player-button").each(function(index) {
             let chosen = $(this).text();
             $(this).on("click", function(event) {

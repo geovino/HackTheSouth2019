@@ -130,7 +130,7 @@ templates["see_asker.handlebars"] = "<div class=\"container-fluid\">\n" +
 templates["spectating.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    <div class=\"row justify-content-lg-center\">\n" +
    "        <div class=\"col-lg-auto\">\n" +
-   "            <h2 class=\"fancyheading\" style=\"max-width: 500px; margin: 60px auto 0px auto;\"><span class=\"highlight\">Player1</span> is asking <span class=\"highlight\">Player2</span> a question.\n" +
+   "            <h2 class=\"fancyheading\" style=\"max-width: 500px; margin: 60px auto 0px auto;\"><span class=\"highlight\">{{asker}}</span> is asking <span class=\"highlight\">{{receiver}}</span> a question.\n" +
    "        </div>\n" +
    "    </div>\n" +
    "</div>\n" +
