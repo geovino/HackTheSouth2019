@@ -87,7 +87,8 @@ class RoomsNamespace(Namespace):
             asker = Database.set_askers_order(room_id)
             self.choose_new_question_and_asker(room_id, asker=asker)
         else:
-            players = Database.get_players(room_id)
+            players = Database.get_updated_players(room_id)
+            print(players)
             emit("players_count_changed", players, json=True, broadcast=True)
 
     def on_choose_receiver(self, data):

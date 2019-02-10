@@ -75,11 +75,11 @@ class Database:
 
         DATABASE['rooms'][room_id]['players'][id_] = player_value
 
-        players = Database.get_players(room_id)
+        players = Database.get_updated_players(room_id)
         return id_, players
 
     @staticmethod
-    def get_players(room_id):
+    def get_updated_players(room_id):
         players = [{"questions_count": player["questions_count"], "player_name": player["name"]} for player in DATABASE["rooms"][room_id]["players"].values()]
         return players
 
