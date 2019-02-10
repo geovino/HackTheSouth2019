@@ -6,14 +6,14 @@
 
         </div>
     </div>
-    <div class="div" style="text-align: center">
-    {{#each users}}
-        <div class="player-display col-12">{{this.name}} is <span class="highlight">{{this.displayStatus}}</span>.</div><br>
+    <div id="player-listing" class="div" style="text-align: center">
+    {{#each players}}
+        <div class="player-display col-12">{{this.player_name}} is <span class="highlight">{{this.displayStatus}}</span>.</div><br>
     {{/each}}
     </div>
 
     <div class="medium-info">
-        <span class="highlight">6/6</span> people have joined
+        <span class="highlight" id="joined-players-counter">{{players_count}}/5</span> people have joined
     </div>
 </div>
 

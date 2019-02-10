@@ -3,6 +3,7 @@
 
     const state = {
       name: null,
+      userId: null,
       questions: [],
       questionCount: 0,
       gameStarted: false, // VERY IMPORTANT WHEN RECEIVING asker_chosen EVENT
@@ -78,28 +79,44 @@
             console.log(room_id);
             router.navigateTo(room_id + "/enter_name");
           });
-
         });
 
 
-        router.add('/{roomid}/waiting_room', (roomid) => {
-          let html = waitingRoom(state.players);
-          el.html(html);
+        var playerDisplayTemplate = Handlebars.compile('<div class="player-display col-12">{{player_name}} is <span class="highlight">{{displayStatus}}</span>.</div><br>')
 
-          receiver.onPlayersCountChanged((playersLeft) => {
+
+
+        receiver.onPlayersCountChanged((playersLeft) => {
             state.players = playersLeft;
-          });
 
-          receiver.onAskerChosen(state.name, (asker) => {
-            state.gameStarted = true;
-              if (state.name === asker) {
-                  state.asker.asker = state.name;
-                  router.navigateTo('/asking_question');
-              } else {
-                  state.asker.asker = asker;
-                  router.navigateTo('/see_asker');
-              }
+            $("#players-listing").empty();
+
+            playersLeft.forEach((player) => {
+              player.displayStatus = player.questions_count == 3 ? "ready" : "still thinking";
+              $("#players-listing").appendChild(playerDisplayTemplate({
+                player_name: player.player_name,
+                displayStatus: player.display_status
+              }));
+            });
+        });
+
+        receiver.onAskerChosen(state.name, (asker) => {
+          state.gameStarted = true;
+            if (state.userId === asker) {
+                state.asker.asker = state.userId;
+                router.navigateTo('/' + state.roomid + '/asking_question');
+            } else {
+                state.asker.asker = asker;
+                router.navigateTo('/' + state.roomid + '/see_asker');
+            }
+        });
+
+        router.add('/{roomid}/waiting_room', (roomid) => {
+          let html = waitingRoom({
+            players: state.players,
+            players_count: state.players.length
           });
+          el.html(html);
         });
 
 
@@ -152,7 +169,9 @@
 
 
         receiver.onUserCreated((userId, numQuestions) => {
+          console.log('event received for user created');
           state.questionCount = numQuestions;
+          state.userId = userId;
           router.navigateTo('/' + state.roomid + '/enter_questions');
         });
 
@@ -162,10 +181,6 @@
           el.html(html);
 
           state.roomid = roomid;
-
-          receiver.onPlayersCountChanged((playersLeft) => {
-            state.players = playersLeft;
-          });
 
           $('.nameButton').on('click', function(event) {
             let $realnameElem = $('.realname');
@@ -232,7 +247,7 @@
               router.navigateTo('/' + roomid + '/waiting_room');
             }
 
-            sender.createQuestion(roomid, state.name, $questionText);
+            sender.createQuestion(roomid, state.userId, $questionText);
 
             //clear the text area
             $('#questionArea').val('');

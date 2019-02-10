@@ -27,7 +27,7 @@ receiver.onReceiverChosen = function(callback) {
 
 receiver.onTimeLimitExceeded = function(username, callback) {
     return socket.on('time_limit_exceeded', function() {
-        
+
         if (username === msg.asker) {
             return callback({
                 ASKER: true
@@ -61,3 +61,7 @@ receiver.onGameOver = function(callback) {
         return callback();
     });
 };
+
+socket.on('error', function(msg) {
+    console.log(msg);
+});
