@@ -12,7 +12,6 @@ rooms_blueprint = Blueprint('rooms', __name__, url_prefix='/rooms')
 class RoomsAPI(MethodView):
 
     def post(self):
-
         room = request.json
 
         if room is None:  # request body couldn't be parsed as JSON
@@ -29,7 +28,7 @@ rooms_blueprint.add_url_rule('/', view_func=RoomsAPI.as_view('api_rooms'))
 class RoomsInstanceAPI(MethodView):
 
     def get(self, identifier):
-
+        print("test12")
         room_instance = Database.get_room(identifier)
 
         if room_instance is None:
@@ -44,7 +43,7 @@ rooms_blueprint.add_url_rule('/<string:identifier>', view_func=RoomsInstanceAPI.
 class RoomsNamespace(Namespace):
 
     def on_create_user(self, data):
-
+        print("test")
         try:
             user = loads(data)
         except ValueError:
