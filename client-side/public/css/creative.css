@@ -430,6 +430,7 @@ textarea {
   resize: none;
 }
 
-
-
+.whiteLabels {
+  color: white;
+}
 

@@ -1,14 +1,30 @@
 var templates = {};
 
+<<<<<<< HEAD
 templates["asking_question.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    <div class=\"row justify-content-lg-center\">\n" +
    "        <div class=\"col-lg-auto\">\n" +
    "            <h2 class=\"fancyheading\" style=\"max-width: 500px; margin: 60px auto 0px auto;\">Ask <span class=\"highlight\">Player2</span>: \"<span class=\"highlight question\">Who was your first crush?</span>\"</h2>\n" +
    "        </div>\n" +
    "    </div>\n" +
+=======
+templates["asking_question.handlebars"] = "<div class=\"jumbotron\">\n" +
+   "    <h1 class=\"display-4\">{{question}}</h1>\n" +
+   "</div>\n" +
+   "\n" +
+   "<div class=\"clock\">\n" +
+   "   <span class=\"short-hand\"></span>\n" +
+   "   <span class=\"long-hand\"></span>\n" +
+   "   <span class=\"nut\"></span>\n" +
+   "</div>\n" +
+   "\n" +
+   "<div class=\"text-center\" style=\"margin-top: 10px;\">\n" +
+   "    <button type=\"button\" class=\"btn btn-success\">I Accept this answer</button>\n" +
+>>>>>>> acbe5b02f0b1550fc7a46d07fa3949e9dcab7e25
    "</div>\n" +
    "";
 
+<<<<<<< HEAD
 templates["choose_receiver.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    <div class=\"row justify-content-lg-center\">\n" +
    "        <div class=\"col-lg-auto\">\n" +
@@ -43,6 +59,50 @@ templates["enter_questions.handlebars"] = "<div class=\"container-fluid\">\n" +
    "            <h3 class=\"fancyheading\">Interesting questions have interesting answers.</h3>\n" +
    "\n" +
    "            <textarea class=\"question-input\" placeholder=\"Write your a question here!\"></textarea>\n" +
+=======
+templates["choose_receiver.handlebars"] = "<div class=\"list-group\">\n" +
+   "    <div class='container'>\n" +
+   "        <h1 class='whiteLabels'>Choose Receiver</h1>\n" +
+   "        <div class=\"col-2\"></div>\n" +
+   "        {{#each people}}\n" +
+   "            <button type=\"button\" class=\"list-group-item list-group-item-action userButton\">{{this.name}}</button>\n" +
+   "        {{/each}}\n" +
+   "        <div class=\"col-2\"></div>\n" +
+   "    </div>\n" +
+   "</div>";
+
+templates["enter_questions.handlebars"] = "<div class=\"container-fluid\">\n" +
+   "    <form>\n" +
+   "        <div class=\"row\">\n" +
+   "            <div class=\"col-2\">\n" +
+   "            </div>\n" +
+   "            <div class=\"col-8\">\n" +
+   "                <div class=\"form-group\">\n" +
+   "                    <label for=\"realname\" class=\"whiteLabels\">Name</label>\n" +
+   "                    <input type=\"text\" class=\"form-control realname\" id=\"realname\" placeholder=\"Write your name here\">\n" +
+   "                </div>\n" +
+   "            </div>\n" +
+   "\n" +
+   "            <div class=\"col-2\">\n" +
+   "            </div>\n" +
+   "        </div>\n" +
+   "        <div class=\"row\">\n" +
+   "            <div class=\"col-2\">\n" +
+   "            </div>\n" +
+   "            <div class=\"col-8\">\n" +
+   "                {{#each questions}}\n" +
+   "                    <div class=\"form-group\">\n" +
+   "                        <label for=\"userQuestion\" class=\"whiteLabels\">Question {{this}}</label>\n" +
+   "                        <textarea class=\"form-control userQuestion\" placeholder=\"Write your first question here\"></textarea>\n" +
+   "                    </div>\n" +
+   "                {{/each}}\n" +
+   "            </div>\n" +
+   "            <div class=\"col-2\">\n" +
+   "            </div>\n" +
+   "        </div>\n" +
+   "        <div class=\"text-center\">\n" +
+   "            <button type=\"button\" class=\"btn btn-primary btn-sm readyButton\">I'm ready</button>\n" +
+>>>>>>> acbe5b02f0b1550fc7a46d07fa3949e9dcab7e25
    "        </div>\n" +
    "    </div>\n" +
    "    <div class=\"medium-info\"><span class=\"highlight\">2/3</span> questions sent.</div>\n" +
@@ -92,6 +152,7 @@ templates["receiving_question.handlebars"] = "<div class=\"container-fluid\">\n"
    "</div>\n" +
    "";
 
+<<<<<<< HEAD
 templates["see_asker.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    <div class=\"row justify-content-lg-center\">\n" +
    "        <div class=\"col-lg-auto\">\n" +
@@ -100,6 +161,20 @@ templates["see_asker.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    </div>\n" +
    "</div>\n" +
    "";
+=======
+templates["see_asker.handlebars"] = "<div class=\"jumbotron\">\n" +
+   "    <h1 class=\"display-4\" >Asker is: {{asker}}</h1>\n" +
+   "    <h2 class=\"display-6\">Please wait for his question...</h2>\n" +
+   "</div>\n" +
+   "\n" +
+   "<div>\n" +
+   "    <div class=\"col-2\"></div>\n" +
+   "        <div class=\"col-8\">\n" +
+   "            <i class= \"fa fa-question-circle fa-10x\" style=\"font-size: 20em;\"></i>\n" +
+   "        </div>\n" +
+   "    <div class=\"col-2\"></div>\n" +
+   "</div>";
+>>>>>>> acbe5b02f0b1550fc7a46d07fa3949e9dcab7e25
 
 templates["spectating.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    <div class=\"row justify-content-lg-center\">\n" +

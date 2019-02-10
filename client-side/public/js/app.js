@@ -70,7 +70,7 @@
 
         router.add('/asking_question', () => {
           let html = askingQuestion({
-            asker:"Ivo"
+            question: "Ask someone ~this"
           });
           el.html(html);
         });
@@ -86,7 +86,7 @@
           let html = chooseReceiver({
             people: [
               {
-                name: "Niki the idiot"
+                name: "Niki the smart guy"
               },
               {
                 name: "Ivo (The BOSS) Mladenov"
@@ -139,6 +139,7 @@
             state.player = input.name;
             console.log(state);
             // At that time a receiver is known, so redirect
+            router.navigateTo('/waiting_room');
             return input; // name of the receiver
           });
         });
