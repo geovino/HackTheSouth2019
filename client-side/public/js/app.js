@@ -236,20 +236,20 @@
           let html = receivingQuestion();
           el.html(html);
 
-          receiver.onAskerChosen(state.name, (asker) => {
-            if (state.name === asker) {
-                state.asker.asker = state.name;
-                console.log(state);
-                router.navigateTo('/' + roomid + '/choose_receiver');
-            } else {
-                state.asker.asker = asker;
-                router.navigateTo('/' + roomid + '/see_asker');
-            }
-          });
+          // receiver.onAskerChosen(state.name, (asker) => {
+          //   if (state.name === asker) {
+          //       state.asker.asker = state.name;
+          //       console.log(state);
+          //       router.navigateTo('/' + roomid + '/choose_receiver');
+          //   } else {
+          //       state.asker.asker = asker;
+          //       router.navigateTo('/' + roomid + '/see_asker');
+          //   }
+          // });
 
-          receiver.onGameOver(() => {
-            router.navigateTo('/game_over');
-          });
+          // receiver.onGameOver(() => {
+          //   router.navigateTo('/game_over');
+          // });
         });
 
         router.add('{roomid}/see_asker', (roomid) => {
@@ -258,31 +258,11 @@
           });
           el.html(html);
 
-          receiver.onReceiverChosen((receiver) => {
-            if (state.name === receiver) {
-              state.asker.receiver = state.name
-              router.navigateTo('/' + roomid + '/asking_question');
-            } else if (state.name !== state.asker.asker) {
-              state.asker.receiver = receiver;
-              router.navigateTo('/' + roomid + '/spectating');
-            }
-          });
-
         });
 
         router.add('{roomid}/spectating', (roomid) => {
           let html = spectating();
           el.html(html);
-
-          receiver.onAskerChosen(state.name, (asker) => {
-            if (state.name === asker) {
-                state.asker.asker = state.name;
-                router.navigateTo('/' + roomid + '/choose_receiver');
-            } else {
-                state.asker.asker = asker;
-                router.navigateTo('/' + roomid + '/see_asker');
-            }
-          });
 
           receiver.onGameOver(() => {
             router.navigateTo('/game_over');
@@ -303,7 +283,9 @@
           
           $(".player-button").each(function(index) {
             let chosen = $(this).text();
-            sender.chooseReceiver(state.roomid, chosen);
+            $(this).on("click", function(event) {
+              sender.chooseReceiver(state.roomid, chosen);
+            });
           });
       });
 
@@ -331,13 +313,30 @@
 
         receiver.onAskerChosen(state.name, (asker) => {
           state.gameStarted = true;
-            if (state.userId === asker) {
-                state.asker.asker = state.userId;
+            if (state.name === asker) {
+                state.asker.asker = state.name;
                 router.navigateTo('/' + state.roomid + '/choose_receiver');
             } else {
                 state.asker.asker = asker;
                 router.navigateTo('/' + state.roomid + '/see_asker');
             }
+        });
+
+        receiver.onReceiverChosen((receiver) => {
+          console.log(state);
+          if (state.name === receiver) {
+            state.asker.receiver = state.name;
+            console.log("am receiver");
+            router.navigateTo('/' + state.roomid + '/receiving_question');
+          } else if (state.name === state.asker.asker) {
+            state.asker.receiver = receiver;
+            console.log("am asker");
+            router.navigateTo('/' + state.roomid + '/asking_question');
+          } else if (state.name !== state.asker.asker) {
+            state.asker.receiver = receiver;
+            console.log("am spectator");
+            router.navigateTo('/' + state.roomid + '/spectating');
+          }
         });
 
 
