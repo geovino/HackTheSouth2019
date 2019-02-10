@@ -91,12 +91,8 @@
           el.html(html);
         });
 
-<<<<<<< HEAD
-        router.add('/enter_name', () => {
-=======
 
         router.add('/{roomid}/enter_name', () => {
->>>>>>> 39794407518708bfbf6b733727d7dcf332216e82
           let html = enterName();
           el.html(html);
 
