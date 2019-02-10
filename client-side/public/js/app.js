@@ -207,12 +207,11 @@
 
             }
 
+            sender.createQuestion(roomid, state.userId, $questionText);
+
             if (state.questionCount - state.questions.length === 0) {
               router.navigateTo('/' + roomid + '/waiting_room');
             }
-
-            sender.createQuestion(roomid, state.userId, $questionText);
-
             //clear the text area
             $('#questionArea').val('');
           });
@@ -313,11 +312,14 @@
         receiver.onPlayersCountChanged((playersLeft) => {
             state.players = playersLeft;
 
-            $("#players-listing").empty();
+            console.log("count_changed");
+
+            $("#player-listing").empty();
 
             playersLeft.forEach((player) => {
+              console.log(player);
               player.displayStatus = player.questions_count == 3 ? "ready" : "still thinking";
-              $("#players-listing").appendChild(playerDisplayTemplate({
+              $("#player-listing").appendChild(playerDisplayTemplate({
                 player_name: player.player_name,
                 displayStatus: player.display_status
               }));

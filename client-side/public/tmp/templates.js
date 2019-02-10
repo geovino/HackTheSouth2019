@@ -144,14 +144,14 @@ templates["waiting_room.handlebars"] = "<div class=\"container-fluid\">\n" +
    "\n" +
    "        </div>\n" +
    "    </div>\n" +
-   "    <div class=\"div\" style=\"text-align: center\">\n" +
+   "    <div id=\"player-listing\" class=\"div\" style=\"text-align: center\">\n" +
    "    {{#each players}}\n" +
    "        <div class=\"player-display col-12\">{{this.player_name}} is <span class=\"highlight\">{{this.displayStatus}}</span>.</div><br>\n" +
    "    {{/each}}\n" +
    "    </div>\n" +
    "\n" +
    "    <div class=\"medium-info\">\n" +
-   "        <span class=\"highlight\">{{players_count}}/5</span> people have joined\n" +
+   "        <span class=\"highlight\" id=\"joined-players-counter\">{{players_count}}/5</span> people have joined\n" +
    "    </div>\n" +
    "</div>\n" +
    "\n" +
