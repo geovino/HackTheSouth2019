@@ -8,7 +8,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'flask==1.0.2',
-        'flask-socketio==3.2.1'
+        'flask-socketio==3.2.1',
         'flask-cors'
     ],
     entry_points={
