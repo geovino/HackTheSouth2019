@@ -188,7 +188,7 @@ class Database:
         if room_id not in DATABASE['rooms']:
             return None
 
-        players = DATABASE["rooms"][room_id]["players"].keys()
+        players = list(DATABASE["rooms"][room_id]["players"].keys())
 
         last_receiver = DATABASE["rooms"][room_id]["last_receiver"]
         asker = Database.get_current_asker(room_id)
@@ -205,7 +205,11 @@ class Database:
         else:
             return None, "SHIT - serious logic error"
 
-        return 0
+        nicknames = []
+        for p in players:
+            nicknames.append(DATABASE["rooms"][room_id]["players"][p]['name'])
+
+        return nicknames
 
     # ------------------ QUESTIONS END ----------------------
 
