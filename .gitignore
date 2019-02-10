@@ -4,4 +4,4 @@ client-side/package-lock.json
 *pycache*
 */.vscode
 *egg*
-
+*.pyc

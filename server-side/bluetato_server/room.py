@@ -17,9 +17,18 @@ class RoomsAPI(MethodView):
         if room is None:  # request body couldn't be parsed as JSON
             return jsonify({'title': 'Bad request', 'msg': 'Invalid input data for room creation.'}), 400
 
-        room_identifier = Database.create_room(room)
+        room_identifier = Database.create_room(room["number_of_players"])
 
         return jsonify({"identifier": room_identifier}), 201
+
+    def get(self):
+        '''
+        DEBUG ONLY
+        '''
+
+        rooms = Database.get_rooms_ids()
+
+        return jsonify({"rooms_ids": rooms}), 201
 
 
 rooms_blueprint.add_url_rule('/', view_func=RoomsAPI.as_view('api_rooms'))
