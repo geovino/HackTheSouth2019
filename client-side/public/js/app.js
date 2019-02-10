@@ -3,7 +3,8 @@
 
     const state = {
       name: null,
-      questions: []
+      questions: [],
+      questionCount: 0,
     };
 
     window.addEventListener('load', () => {
@@ -115,6 +116,11 @@
           let html = enterName();
           el.html(html);
 
+          receiver.onUserCreated((userId, numQuestions) => {
+            state.questionCount = numQuestions;
+            router.navigateTo('/enter_questions');
+          });
+
           $('.nameButton').on('click', function(event) {
             let $realnameElem = $('.realname');
             if ($realnameElem.length == 1 && $realnameElem[0].value) {
@@ -161,6 +167,36 @@
             questions: [1, 2, 3]
           });
           el.html(html);
+
+          $('.questionButton').on('click', function(event) {
+
+            let $questionText = $('#questionArea').val();
+            if ($questionText.length !== 0) {
+              state.questions.push($questionText);
+
+              //set the number of answered questions in template -- does not work
+              $('#questionsDone').text(state.questions.length + "/" + state.questionCount);
+              console.log(state);
+
+            }
+
+            if (state.questionCount - state.questions.length === 0) {
+              router.navigateTo('/waiting_room');
+            }
+
+            sender.createQuestion('ca9e11de-8648-4e22-a330-def94e4bad8f', state.name, $questionText);
+
+            //clear the text area
+            $('#questionArea').val('');
+          });
+
+          // let html = enterQuestion({
+            //change this to the three questions
+
+
+            questions: [1, 2, 3]
+          // });
+          // el.html(html);
 
           let input = {
             name: state.player,
@@ -230,7 +266,20 @@
         }
 
         function onQuestionEntered() {
+          console.log("asdfas");
 
+          // let html = enterQuestion();
+          // el.html(html);
+
+          // $('.questionButton').on('click', function(event) {
+          //   console.log(event);
+          //   let $questionText = $('.questionArea');
+          //   console.log($questionText);
+            // if ($realnameElem.length == 1 && $realnameElem[0].value) {
+            //   state.name = $realnameElem[0].value;
+            // }
+            // console.log(state);
+          // });
         }
 
         function onReady() {

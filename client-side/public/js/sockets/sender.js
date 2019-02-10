@@ -1,4 +1,4 @@
-let socket = io.connect('https://hackaton2019-test.appspot.com:443');
+let socket = io.connect('http://3.8.68.131:8080');
 let sender = {};
 
 socket.on('connect', function() {
@@ -14,9 +14,11 @@ sender.createUser = function(roomId, username) {
     return socket.emit('create_user', JSON.stringify(msg));
 };
 
-sender.createQuestion = function(question) {
+sender.createQuestion = function(roomId, userId, question) {
     const msg = {
-        question: question
+        question: question,
+        room_id: roomId,
+        user_id: userId
     };
 
     return socket.emit('create_question', JSON.stringify(msg));

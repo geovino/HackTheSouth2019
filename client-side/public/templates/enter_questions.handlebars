@@ -4,9 +4,10 @@
             <h1 class="fancyheading">What questions should the others answer?</h1>
             <h3 class="fancyheading">Interesting questions have interesting answers.</h3>
 
-            <textarea class="question-input" placeholder="Write your a question here!"></textarea>
+            <textarea class="question-input" placeholder="Write your a question here!" id="questionArea"></textarea>
         </div>
     </div>
-    <div class="medium-info"><span class="highlight">2/3</span> questions sent.</div>
-    <button type="button" class="fancy">Send question</button>
+    <div class="medium-info"><span class="highlight" id="questionsDone">{{this.questions.length}}/{{this.questionCount}}</span> 
+     questions sent.</div>
+    <button type="button" class="fancy questionButton">Send question</button>
 </div>
