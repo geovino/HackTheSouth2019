@@ -2,7 +2,7 @@ let receiver = {};
 
 receiver.onAskerChosen = function(username, callback) {
     return socket.on('asker_chosen', function(msg) {
-        return callback(username === msg.asker); // get asker template if true
+        return callback(msg.asker); // get asker template if true
     });
 
 };
@@ -19,14 +19,14 @@ receiver.onQuestionCreated = function(callback) {
     });
 };
 
-receiver.onReceiverChosen = function(username, callback) {
+receiver.onReceiverChosen = function(callback) {
     return socket.on('receiver_chosen', function(msg) {
-        return callback(username === msg.receiver);
+        return callback(msg.receiver);
     });
 };
 
 receiver.onTimeLimitExceeded = function(username, callback) {
-    return socket.on('time_limit_exceeded', function(msg) {
+    return socket.on('time_limit_exceeded', function() {
         
         if (username === msg.asker) {
             return callback({
@@ -50,7 +50,7 @@ receiver.onUserCreated = function(callback) {
     });
 };
 
-receiver.players_count_changed = function(callback) {
+receiver.onPlayersCountChanged = function(callback) {
     return socket.on('players_count_changed', function(msg) {
         return callback(msg.players_left);
     });
