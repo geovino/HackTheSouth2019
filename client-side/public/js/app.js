@@ -79,7 +79,7 @@
           let html = chooseReceiver({
             people: [
               {
-                name: "Niki the idiot"
+                name: "Niki the smart guy"
               },
               {
                 name: "Ivo (The BOSS) Mladenov"

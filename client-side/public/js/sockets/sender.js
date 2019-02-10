@@ -7,7 +7,7 @@ sender.createUser = function(roomId, username) {
         username: username
     };
 
-    return socket.emit('create_user', msg);
+    return socket.emit('create_user', JSON.stringify(msg));
 };
 
 sender.createQuestion = function(question) {
@@ -15,7 +15,7 @@ sender.createQuestion = function(question) {
         question: question
     };
 
-    return socket.emit('create_question', msg);
+    return socket.emit('create_question', JSON.stringify(msg));
 }
 
 sender.chooseReceiver = function(roomId, username) {
@@ -24,7 +24,7 @@ sender.chooseReceiver = function(roomId, username) {
         username: username
     };
 
-    return socket.emit('choose_receiver', msg);
+    return socket.emit('choose_receiver', JSON.stringify(msg));
 }
 
 sender.notifyResponse = function(roomId) {
@@ -32,6 +32,6 @@ sender.notifyResponse = function(roomId) {
         room_id: roomId
     };
 
-    return socket.emit('notify_response', msg)
+    return socket.emit('notify_response', JSON.stringify(msg))
 }
 
