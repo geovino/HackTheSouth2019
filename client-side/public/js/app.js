@@ -76,10 +76,13 @@
           el.html(html);
         });
 
-
         router.add('/enter_name', () => {
           let html = enterName();
           el.html(html);
+
+          receiver.onUserCreated(() => {
+            router.navigateTo('/enter_questions');
+          });
 
           $('.nameButton').on('click', function(event) {
             let $realnameElem = $('.realname');

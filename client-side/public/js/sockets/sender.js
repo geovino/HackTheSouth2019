@@ -1,4 +1,4 @@
-let socket = io.connect('https://hackaton2019-test.appspot.com:443');
+let socket = io.connect('http://3.8.68.131:8080');
 let sender = {};
 
 socket.on('connect', function() {
