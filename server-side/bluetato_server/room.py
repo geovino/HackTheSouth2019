@@ -138,12 +138,12 @@ class RoomsNamespace(Namespace):
         else:
             next_asker = asker
 
-        emit("asker_chosen", {"asker": next_asker}, json=True, broadcast=True)
+        emit("asker_chosen", {"asker": Database.get_current_asker_name(room_id, next_asker)}, json=True, broadcast=True)
         generated_question = Database.get_question(room_id)
         print(generated_question, next_asker)
         if generated_question is None:
             emit("game_over", "", broadcast=True)
         else:
             potential_receivers = Database.get_potential_receivers(room_id)
-            print(potential_receivers)
+            print("Generated question for ", generated_question, next_asker, potential_receivers)
             emit("generated_question", {"question": generated_question, "potential_receivers": potential_receivers}, json=True, room=Database.get_session_id(room_id, next_asker))

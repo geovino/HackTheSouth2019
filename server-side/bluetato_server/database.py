@@ -160,6 +160,10 @@ class Database:
         return DATABASE["rooms"][room_id]["asker_queue"][0]
 
     @staticmethod
+    def get_current_asker_name(room_id, asker_id):
+        return DATABASE["rooms"][room_id]["players"][asker_id]["name"]
+
+    @staticmethod
     def get_next_asker(room_id):
         if room_id not in DATABASE['rooms']:
             return None
@@ -178,13 +182,15 @@ class Database:
     @staticmethod
     def set_last_receiver(room_id, name):
         if room_id not in DATABASE['rooms']:
+            print("MISSING")
             return None
 
         for pl in DATABASE['rooms'][room_id]['players']:
-            if DATABASE['rooms'][room_id]['players'][pl] == name:
+            if DATABASE['rooms'][room_id]['players'][pl]["name"] == name:
                 DATABASE['rooms'][room_id]['last_receiver'] = pl
+                print("returning 0")
                 return 0
-
+        print("RETURUN NONE")
         return None
 
     @staticmethod
@@ -193,9 +199,10 @@ class Database:
             return None
 
         players = list(DATABASE["rooms"][room_id]["players"].keys())
-
+        print(players, "PLAYERS DEBUG")
         last_receiver = DATABASE["rooms"][room_id]["last_receiver"]
         asker = Database.get_current_asker(room_id)
+        print("Asker", asker, "LAST", last_receiver) 
 
         if last_receiver is None:
             pass
@@ -205,10 +212,12 @@ class Database:
             print("RECEIVER shit")
             return None, "SHIT - serious logic error"
 
-        if asker in players:
+        if asker == last_receiver:
+            pass
+        elif asker in players:
             players.remove(asker)
         else:
-            print("ASKER shit")
+            print("ASKER shit ", asker, players)
             return None, "SHIT - serious logic error"
 
         nicknames = []
