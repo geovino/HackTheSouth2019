@@ -1,5 +1,9 @@
-let socket = io();
+let socket = io.connect('https://hackaton2019-test.appspot.com:443');
 let sender = {};
+
+socket.on('connect', function() {
+    console.log('IT FUCKIN\' WORKS');
+});
 
 sender.createUser = function(roomId, username) {
     const msg = {

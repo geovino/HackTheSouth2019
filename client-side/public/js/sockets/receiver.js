@@ -1,4 +1,3 @@
-let socket = io();
 let receiver = {};
 
 receiver.onAskerChosen = function(username, callback) {
