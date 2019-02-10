@@ -1,0 +1,89 @@
+{
+  "_args": [
+    [
+      "vanilla-router@^1.2.7",
+      "/home/ivo-timev/Code/HackTheSouth2019/client-side"
+    ]
+  ],
+  "_from": "vanilla-router@>=1.2.7 <2.0.0",
+  "_id": "vanilla-router@1.2.7",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/vanilla-router",
+  "_nodeVersion": "10.2.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/vanilla-router_1.2.7_1529354955945_0.14454056445139973"
+  },
+  "_npmUser": {
+    "email": "grigore@odajiu.eu",
+    "name": "graidenix"
+  },
+  "_npmVersion": "5.6.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "vanilla-router",
+    "raw": "vanilla-router@^1.2.7",
+    "rawSpec": "^1.2.7",
+    "scope": null,
+    "spec": ">=1.2.7 <2.0.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/vanilla-router/-/vanilla-router-1.2.7.tgz",
+  "_shasum": "37ffbd778cd12504f5d407f8ced37b45c9a72b62",
+  "_shrinkwrap": null,
+  "_spec": "vanilla-router@^1.2.7",
+  "_where": "/home/ivo-timev/Code/HackTheSouth2019/client-side",
+  "author": {
+    "name": "grigore@odajiu.eu"
+  },
+  "bugs": {
+    "url": "https://github.com/Graidenix/vanilla-router/issues"
+  },
+  "dependencies": {},
+  "description": "JS vanilla Router",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  },
+  "directories": {},
+  "dist": {
+    "fileCount": 19,
+    "integrity": "sha512-ss0OltH+b/HqPf83fCqfdr9Tez1CvYw1hOF6NBBsfgth/sdqB6u/ZOJjp6JDTnymFIBNN5cjqpRP6foREF9SWw==",
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJbKBrNCRA9TVsSAnZWagAAlpkP+gPSIqgGmLI1iqaLaqkC\nARYYj2yQgvqgQDVmL6yPpe0jBxF7Er5ghM6VAu8oqDX5c5itpbeTwfYxxGoN\nuy37GHHjuqpbNZ/U0Y4kIUCfN/Zfkq7E+XbjvctlOJgiG6vl6aqi1PVdwm0L\nWETE0lU0nkd115HUlXpP0fWjpeYY+emAHXx4bbTKwlLwWW6TGcLTiEzjtT4Y\na0EV8chlCdHaFnqBDBYNVko/hZiU617YXGYkt8qwImTRXi09u8ltkTdiT/l6\nJaIlQg7gTGNS5WQSusroJt5s8I2ZFIqvp7RB/PL94JvK/hW1QBc3sCPjNPL2\nuUivUk+AfMPrqDaUD3/XlxOXze5471eTK9kmKjdyzMa8kGR2O7I/A5O6af6H\n8/ffA4I5DFW6yx+LoBHnU2SQNttS5mr80EVb8SuG2TNGOn5Hqd2eEn3RWmlz\n9oc6GLyngyAMdSbE6zkpwXfXyXSi1sgPsgkhvL2ombCNWCatPEtddDT4wSzA\ncbEXqkH4ys4wWCxLzVM/CKIi0wYP3WduMUL/uaLX2e9I4xgN4X2RWjqqWgOi\nVDtzbg7nRc3Rws+OIwwoRC9iLfn73qh48ZBdPD2Mms3SbGiwhiTMvP+xDbaN\nlkiEq8NzaYuL/qclG6uV6I3yBpJepfvw2oaouw50jzXG8fXZ/AmoOAbzFggB\nK/me\r\n=y3LY\r\n-----END PGP SIGNATURE-----\r\n",
+    "shasum": "37ffbd778cd12504f5d407f8ced37b45c9a72b62",
+    "tarball": "https://registry.npmjs.org/vanilla-router/-/vanilla-router-1.2.7.tgz",
+    "unpackedSize": 85718
+  },
+  "gitHead": "7d435e777e7a554511cf149c4a4c1c71a69f7d81",
+  "homepage": "https://github.com/Graidenix/vanilla-router#readme",
+  "keywords": [
+    "browserify-router",
+    "opa",
+    "router",
+    "webpack-router"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "graidenix",
+      "email": "grigore@odajiu.eu"
+    }
+  ],
+  "name": "vanilla-router",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Graidenix/vanilla-router.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "typings": "index.d.ts",
+  "version": "1.2.7"
+}

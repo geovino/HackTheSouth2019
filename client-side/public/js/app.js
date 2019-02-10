@@ -50,12 +50,32 @@
           let html = lobby();
           el.html(html);
 
-          $("#create-room").on('click', function(event) {
-            router.navigateTo("/room_created");
+          $("#create-room").on("click", function(event) {
+            $.ajax({
+                type: "post",
+                contentType: "application/json",
+                url: "http://3.8.68.131:8080/rooms/",
+                data: JSON.stringify({ 'number_of_players': 5 }),
+                dataType: "json",
+                crossDomain: true,
+                success: function(data) {
+                  $("#link-present").removeClass("hidden");
+                  $("#create-room").addClass("hidden");
+                  $("#link-display").text(data["identifier"]);
+                  $("#link-display").attr("href", "/" + data["identifier"] + "/enter_name");
+                }
+              })
           });
+
+          $("#join-room").on("click", function(event) {
+            var room_id = $("#code-input").val();
+            console.log(room_id);
+            router.navigateTo(room_id + "/enter_name");
+          });
+
         });
 
-        router.add('/{roomid}/waiting_room', (roomid) => {
+        router.add('{roomid}/waiting_room', (roomid) => {
           console.log(roomid);
           let html = waitingRoom({
             users: [
@@ -77,14 +97,14 @@
         });
 
 
-        router.add('/{roomid}/room_created', () => {
+        router.add('{roomid}/room_created', (roomid) => {
           let html = roomCreated({
             theurl: "https://www.w3schools.com/css/css_form.asp"
           });
           el.html(html);
         });
 
-        router.add('/{roomid}/asking_question', () => {
+        router.add('{roomid}/asking_question', (roomid) => {
           let html = askingQuestion({
             question: "Ask someone ~this"
           });
@@ -92,7 +112,7 @@
         });
 
 
-        router.add('/{roomid}/enter_name', () => {
+        router.add('{roomid}/enter_name', (roomid) => {
           let html = enterName();
           el.html(html);
 
@@ -111,7 +131,7 @@
 
         });
 
-        router.add('/{roomid}/choose_receiver', () => {
+        router.add('{roomid}/choose_receiver', (roomid) => {
           // Get names
           let html = chooseReceiver({
             people: [
@@ -127,7 +147,7 @@
             ]
           });
           el.html(html);
-          $('.userButton').each(function() {
+          $('.userButton').each(function(roomid) {
             $(this).on('click', function(event) {
               let $elem = $(this);
               let receiver = null;
@@ -142,8 +162,15 @@
           });
         });
 
+<<<<<<< HEAD
         router.add('/enter_questions', () => {
           let html = enterQuestion(state);
+=======
+        router.add('{roomid}/enter_questions', (roomid) => {
+          let html = enterQuestion({
+            questions: [1, 2, 3]
+          });
+>>>>>>> 6c26f08facd75956522a5d32a5bf92b7a71963de
           el.html(html);
 
           $('.questionButton').on('click', function(event) {
@@ -155,7 +182,7 @@
               //set the number of answered questions in template -- does not work
               $('#questionsDone').text(state.questions.length + "/" + state.questionCount);
               console.log(state);
-              
+
             }
 
             if (state.questionCount - state.questions.length === 0) {
@@ -171,7 +198,7 @@
           // let html = enterQuestion({
             //change this to the three questions
 
-            
+
             questions: [1, 2, 3]
           // });
           // el.html(html);
@@ -198,19 +225,19 @@
           });
         });
 
-        router.add('/{roomid}/receiving_question', () => {
+        router.add('{roomid}/receiving_question', (roomid) => {
           let html = receivingQuestion();
           el.html(html);
         });
 
-        router.add('/{roomid}/see_asker', () => {
+        router.add('{roomid}/see_asker', () => {
           let html = seeAsker({
             asker: 'Ivacheto'
           });
           el.html(html);
         });
 
-        router.add('/{roomid}/spectating', () => {
+        router.add('{roomid}/spectating', () => {
           let html = spectating();
           el.html(html);
         });
@@ -234,7 +261,7 @@
 
           // Navigate to clicked url
           const href = target.attr('href');
-          const path = href.substr(href.lastIndexOf('/'));
+          const path = href.substr(href.indexOf('/'));
           router.navigateTo(path);
         });
         // console.log('nice');
