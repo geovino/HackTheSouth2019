@@ -12,8 +12,10 @@ rooms_blueprint = Blueprint('rooms', __name__, url_prefix='/rooms')
 class RoomsAPI(MethodView):
 
     def post(self):
+        print(request)
+        print(request.data)
         room = request.json
-
+        print(room)
         if room is None:  # request body couldn't be parsed as JSON
             return jsonify({'title': 'Bad request', 'msg': 'Invalid input data for room creation.'}), 400
 
