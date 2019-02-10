@@ -75,8 +75,13 @@ class Database:
 
         DATABASE['rooms'][room_id]['players'][id_] = player_value
 
-        players = [{"questions_count": player["questions_count"], "player_name": player["name"]} for player in DATABASE["rooms"][room_id]["players"].values()]
+        players = Database.get_players(room_id)
         return id_, players
+
+    @staticmethod
+    def get_players(room_id):
+        players = [{"questions_count": player["questions_count"], "player_name": player["name"]} for player in DATABASE["rooms"][room_id]["players"].values()]
+        return players
 
     @staticmethod
     def delete_player(room_id, name):
