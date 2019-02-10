@@ -99,7 +99,7 @@ templates["receiving_question.handlebars"] = "<div class=\"container-fluid\">\n"
    "        <div class=\"col-lg-auto\">\n" +
    "            <h2 class=\"fancyheading\" style=\"max-width: 500px; margin: 60px auto 0px auto;\">It's time for some indiscretion. <br>The ice is breaking. <br><span class=\"highlight question\">Answer the question.</span><br> The timer is shaking.</h2>\n" +
    "\n" +
-   "            <img class=\"frost\" src=\"img/icey.png\"/>\n" +
+   "            <img style=\"width: 200px; height: 200px;\" src=\"img/potato.gif\"/>\n" +
    "        </div>\n" +
    "    </div>\n" +
    "</div>\n" +
@@ -151,7 +151,7 @@ templates["waiting_room.handlebars"] = "<div class=\"container-fluid\">\n" +
    "    </div>\n" +
    "\n" +
    "    <div class=\"medium-info\">\n" +
-   "        <span class=\"highlight\" id=\"joined-players-counter\">{{players_count}}/5</span> people have joined\n" +
+   "        <span class=\"highlight\" id=\"joined-players-counter\">{{players_count}}/4</span> people have joined\n" +
    "    </div>\n" +
    "</div>\n" +
    "\n" +
