@@ -43,38 +43,46 @@
   </head>
 
 <body>
-    <div class="container-fluid boatbg">
-        <div class="row justify-content-lg-center">
-            <div class="col-lg-auto" style="text-align: center;">
-                <h1 class="display-title">Bluetato</h1><br>
-                <h2 class="display-subtitle" style="margin-bottom: 0px;">We were planning to use bluetooth.</h2><br>
-                <h2 class="display-subtitle" style="margin-top: 0px;">We compromised and we made the website blue!</h2>
-            </div>
-        </div>
-
-        <button id="create-room" type="button" class="fancy">Greate room</button>
-
-        <div class="row justify-content-lg-center hidden" id="link-present">
-            <div class="col-lg-auto" style="text-align: center;">
-                <h2 class="display-subtitle" style="margin-bottom: 0px;">Room created. Go to the following link to join the room.</h2><br>
-                <h2 class="display-subtitle" style="margin-top: 0px; text-decoration: underline;"><a id="link-display" href="https://www.w3schools.com/css/css_form.asp">https://www.w3schools.com/css/css_form.asp</a></h2>
-            </div>
-        </div>
-
+    <div>
+      <a class="item" href="/">
+        Lobby ;
+      </a>
+      <a class="item" href="/101/enter_name">
+        Enter Name ;
+      </a>
+      <a class="item" href="/101/waiting_room">
+        Waiting Room ;
+      </a>
+      <a class="item" href="/101/choose_receiver">
+        Choose Receiver ;
+      </a>
+      <a class="item" href="/101/enter_questions">
+        Enter Questions ;
+      </a>
+      <a class="item" href="/101/receiving_question">
+        Receiving Question  ;
+      </a>
+      <a class="item" href="/101/see_asker">
+        See Asker  ;
+      </a>
+      <a class="item" href="/101/asking_question">
+        Asking Question  ;
+      </a>
+      <a class="item" href="/101/spectating">
+        Spectating  ;
+      </a>
     </div>
 
+    <div id="app" style="width:100%; height:100%;">
+    </div>
 
       <!-- JS Library Dependencies -->
       <script src="scripts/jquery/dist/jquery.min.js"></script>
       <!-- <script src="scripts/axios/dist/axios.min.js"></script> -->
       <script src="scripts/handlebars/dist/handlebars.min.js"></script>
       <script src="scripts/vanilla-router/dist/vanilla-router.min.js"></script>
-      <script src="https://cdn.socket.io/socket.io-1.0.0.js"></script>
-      <!-- Custom -->
-      <script src="js/sockets/sender.js"></script>
-      <script src="js/sockets/receiver.js"></script>
       <script src="tmp/templates.js"></script>
-      <script src="js/landing.js"></script>
+      <script src="js/app.js"></script>
       <!-- Bootstrap Core JavaScript -->
       <!-- <script src="vendor/bootstrap/js/bootstrap.min.js"></script> -->
 
